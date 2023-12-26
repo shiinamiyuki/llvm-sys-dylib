@@ -23,7 +23,7 @@ fn generate(llvm_path: &Path) {
     dbg!(&llvm_path);
     builder = builder
         .allowlist_function("LLVM.*")
-        .dynamic_library_name("llvm")
+        .dynamic_library_name("LLVM")
         .clang_arg(&format!("-I{}/include", llvm_path.to_str().unwrap()))
         .clang_arg(&format!("-I{}/build/include", llvm_path.to_str().unwrap()));
     for entry in llvm_path.join("include/llvm-c").read_dir().unwrap() {

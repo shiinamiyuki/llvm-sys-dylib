@@ -1607,7 +1607,7 @@ pub struct LLVMRemarkOpaqueParser {
 }
 pub type LLVMRemarkParserRef = *mut LLVMRemarkOpaqueParser;
 extern crate libloading;
-pub struct llvm {
+pub struct LLVM {
     __library: ::libloading::Library,
     pub LLVMVerifyModule: Result<
         unsafe extern "C" fn(
@@ -7037,7 +7037,7 @@ pub struct llvm {
         ::libloading::Error,
     >,
 }
-impl llvm {
+impl LLVM {
     pub unsafe fn new<P>(path: P) -> Result<Self, ::libloading::Error>
     where
         P: AsRef<::std::ffi::OsStr>,
@@ -9127,7 +9127,7 @@ impl llvm {
             .get(b"LLVMSearchForAddressOfSymbol\0")
             .map(|sym| *sym);
         let LLVMAddSymbol = __library.get(b"LLVMAddSymbol\0").map(|sym| *sym);
-        Ok(llvm {
+        Ok(LLVM {
             __library,
             LLVMVerifyModule,
             LLVMVerifyFunction,
