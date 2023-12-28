@@ -1,6 +1,8 @@
 use std::env;
 use std::path::{Path, PathBuf};
 
+use bindgen::Builder;
+
 fn generate(llvm_path: &Path) {
     // let bindings = bindgen::Builder::default()
     //     // The input header we would like to generate
@@ -24,6 +26,9 @@ fn generate(llvm_path: &Path) {
     builder = builder
         .allowlist_function("LLVM.*")
         .dynamic_library_name("LLVM")
+        .default_enum_style(bindgen::EnumVariation::Rust {
+            non_exhaustive: false,
+        })
         .clang_arg(&format!("-I{}/include", llvm_path.to_str().unwrap()))
         .clang_arg(&format!("-I{}/build/include", llvm_path.to_str().unwrap()));
     for entry in llvm_path.join("include/llvm-c").read_dir().unwrap() {
@@ -43,7 +48,9 @@ fn generate(llvm_path: &Path) {
         .expect("Couldn't write bindings!");
     let bindings = std::fs::read_to_string("src/bindings.rs").unwrap();
     // replace Err: LLVMErrorRef with err: LLVMErrorRef
-    let bindings = bindings.replace("Err: LLVMErrorRef", "err: LLVMErrorRef").replace("Err)", "err)");
+    let bindings = bindings
+        .replace("Err: LLVMErrorRef", "err: LLVMErrorRef")
+        .replace("Err)", "err)");
     std::fs::write("src/bindings.rs", bindings).unwrap();
 }
 fn main() {

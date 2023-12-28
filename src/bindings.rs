@@ -142,347 +142,398 @@ pub struct LLVMOpaqueBinary {
 }
 #[doc = " @see llvm::object::Binary"]
 pub type LLVMBinaryRef = *mut LLVMOpaqueBinary;
-pub const LLVMVerifierFailureAction_LLVMAbortProcessAction: LLVMVerifierFailureAction = 0;
-pub const LLVMVerifierFailureAction_LLVMPrintMessageAction: LLVMVerifierFailureAction = 1;
-pub const LLVMVerifierFailureAction_LLVMReturnStatusAction: LLVMVerifierFailureAction = 2;
+#[repr(i32)]
 #[doc = " @defgroup LLVMCAnalysis Analysis\n @ingroup LLVMC\n\n @{"]
-pub type LLVMVerifierFailureAction = ::std::os::raw::c_int;
-#[doc = "< The linker may choose any COMDAT."]
-pub const LLVMComdatSelectionKind_LLVMAnyComdatSelectionKind: LLVMComdatSelectionKind = 0;
-#[doc = "< The data referenced by the COMDAT must\n< be the same."]
-pub const LLVMComdatSelectionKind_LLVMExactMatchComdatSelectionKind: LLVMComdatSelectionKind = 1;
-#[doc = "< The linker will choose the largest\n< COMDAT."]
-pub const LLVMComdatSelectionKind_LLVMLargestComdatSelectionKind: LLVMComdatSelectionKind = 2;
-#[doc = "< No deduplication is performed."]
-pub const LLVMComdatSelectionKind_LLVMNoDeduplicateComdatSelectionKind: LLVMComdatSelectionKind = 3;
-#[doc = "< The data referenced by the COMDAT must be\n< the same size."]
-pub const LLVMComdatSelectionKind_LLVMSameSizeComdatSelectionKind: LLVMComdatSelectionKind = 4;
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMVerifierFailureAction {
+    LLVMAbortProcessAction = 0,
+    LLVMPrintMessageAction = 1,
+    LLVMReturnStatusAction = 2,
+}
+#[repr(i32)]
 #[doc = " @defgroup LLVMCCoreComdat Comdats\n @ingroup LLVMCCore\n\n @{"]
-pub type LLVMComdatSelectionKind = ::std::os::raw::c_int;
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMComdatSelectionKind {
+    #[doc = "< The linker may choose any COMDAT."]
+    LLVMAnyComdatSelectionKind = 0,
+    #[doc = "< The data referenced by the COMDAT must\n< be the same."]
+    LLVMExactMatchComdatSelectionKind = 1,
+    #[doc = "< The linker will choose the largest\n< COMDAT."]
+    LLVMLargestComdatSelectionKind = 2,
+    #[doc = "< No deduplication is performed."]
+    LLVMNoDeduplicateComdatSelectionKind = 3,
+    #[doc = "< The data referenced by the COMDAT must be\n< the same size."]
+    LLVMSameSizeComdatSelectionKind = 4,
+}
 #[doc = " @addtogroup LLVMCError\n\n @{"]
 pub type LLVMFatalErrorHandler =
     ::std::option::Option<unsafe extern "C" fn(Reason: *const ::std::os::raw::c_char)>;
-pub const LLVMOpcode_LLVMRet: LLVMOpcode = 1;
-pub const LLVMOpcode_LLVMBr: LLVMOpcode = 2;
-pub const LLVMOpcode_LLVMSwitch: LLVMOpcode = 3;
-pub const LLVMOpcode_LLVMIndirectBr: LLVMOpcode = 4;
-pub const LLVMOpcode_LLVMInvoke: LLVMOpcode = 5;
-pub const LLVMOpcode_LLVMUnreachable: LLVMOpcode = 7;
-pub const LLVMOpcode_LLVMCallBr: LLVMOpcode = 67;
-pub const LLVMOpcode_LLVMFNeg: LLVMOpcode = 66;
-pub const LLVMOpcode_LLVMAdd: LLVMOpcode = 8;
-pub const LLVMOpcode_LLVMFAdd: LLVMOpcode = 9;
-pub const LLVMOpcode_LLVMSub: LLVMOpcode = 10;
-pub const LLVMOpcode_LLVMFSub: LLVMOpcode = 11;
-pub const LLVMOpcode_LLVMMul: LLVMOpcode = 12;
-pub const LLVMOpcode_LLVMFMul: LLVMOpcode = 13;
-pub const LLVMOpcode_LLVMUDiv: LLVMOpcode = 14;
-pub const LLVMOpcode_LLVMSDiv: LLVMOpcode = 15;
-pub const LLVMOpcode_LLVMFDiv: LLVMOpcode = 16;
-pub const LLVMOpcode_LLVMURem: LLVMOpcode = 17;
-pub const LLVMOpcode_LLVMSRem: LLVMOpcode = 18;
-pub const LLVMOpcode_LLVMFRem: LLVMOpcode = 19;
-pub const LLVMOpcode_LLVMShl: LLVMOpcode = 20;
-pub const LLVMOpcode_LLVMLShr: LLVMOpcode = 21;
-pub const LLVMOpcode_LLVMAShr: LLVMOpcode = 22;
-pub const LLVMOpcode_LLVMAnd: LLVMOpcode = 23;
-pub const LLVMOpcode_LLVMOr: LLVMOpcode = 24;
-pub const LLVMOpcode_LLVMXor: LLVMOpcode = 25;
-pub const LLVMOpcode_LLVMAlloca: LLVMOpcode = 26;
-pub const LLVMOpcode_LLVMLoad: LLVMOpcode = 27;
-pub const LLVMOpcode_LLVMStore: LLVMOpcode = 28;
-pub const LLVMOpcode_LLVMGetElementPtr: LLVMOpcode = 29;
-pub const LLVMOpcode_LLVMTrunc: LLVMOpcode = 30;
-pub const LLVMOpcode_LLVMZExt: LLVMOpcode = 31;
-pub const LLVMOpcode_LLVMSExt: LLVMOpcode = 32;
-pub const LLVMOpcode_LLVMFPToUI: LLVMOpcode = 33;
-pub const LLVMOpcode_LLVMFPToSI: LLVMOpcode = 34;
-pub const LLVMOpcode_LLVMUIToFP: LLVMOpcode = 35;
-pub const LLVMOpcode_LLVMSIToFP: LLVMOpcode = 36;
-pub const LLVMOpcode_LLVMFPTrunc: LLVMOpcode = 37;
-pub const LLVMOpcode_LLVMFPExt: LLVMOpcode = 38;
-pub const LLVMOpcode_LLVMPtrToInt: LLVMOpcode = 39;
-pub const LLVMOpcode_LLVMIntToPtr: LLVMOpcode = 40;
-pub const LLVMOpcode_LLVMBitCast: LLVMOpcode = 41;
-pub const LLVMOpcode_LLVMAddrSpaceCast: LLVMOpcode = 60;
-pub const LLVMOpcode_LLVMICmp: LLVMOpcode = 42;
-pub const LLVMOpcode_LLVMFCmp: LLVMOpcode = 43;
-pub const LLVMOpcode_LLVMPHI: LLVMOpcode = 44;
-pub const LLVMOpcode_LLVMCall: LLVMOpcode = 45;
-pub const LLVMOpcode_LLVMSelect: LLVMOpcode = 46;
-pub const LLVMOpcode_LLVMUserOp1: LLVMOpcode = 47;
-pub const LLVMOpcode_LLVMUserOp2: LLVMOpcode = 48;
-pub const LLVMOpcode_LLVMVAArg: LLVMOpcode = 49;
-pub const LLVMOpcode_LLVMExtractElement: LLVMOpcode = 50;
-pub const LLVMOpcode_LLVMInsertElement: LLVMOpcode = 51;
-pub const LLVMOpcode_LLVMShuffleVector: LLVMOpcode = 52;
-pub const LLVMOpcode_LLVMExtractValue: LLVMOpcode = 53;
-pub const LLVMOpcode_LLVMInsertValue: LLVMOpcode = 54;
-pub const LLVMOpcode_LLVMFreeze: LLVMOpcode = 68;
-pub const LLVMOpcode_LLVMFence: LLVMOpcode = 55;
-pub const LLVMOpcode_LLVMAtomicCmpXchg: LLVMOpcode = 56;
-pub const LLVMOpcode_LLVMAtomicRMW: LLVMOpcode = 57;
-pub const LLVMOpcode_LLVMResume: LLVMOpcode = 58;
-pub const LLVMOpcode_LLVMLandingPad: LLVMOpcode = 59;
-pub const LLVMOpcode_LLVMCleanupRet: LLVMOpcode = 61;
-pub const LLVMOpcode_LLVMCatchRet: LLVMOpcode = 62;
-pub const LLVMOpcode_LLVMCatchPad: LLVMOpcode = 63;
-pub const LLVMOpcode_LLVMCleanupPad: LLVMOpcode = 64;
-pub const LLVMOpcode_LLVMCatchSwitch: LLVMOpcode = 65;
+#[repr(i32)]
 #[doc = " External users depend on the following values being stable. It is not safe\n to reorder them."]
-pub type LLVMOpcode = ::std::os::raw::c_int;
-#[doc = "< type with no size"]
-pub const LLVMTypeKind_LLVMVoidTypeKind: LLVMTypeKind = 0;
-#[doc = "< 16 bit floating point type"]
-pub const LLVMTypeKind_LLVMHalfTypeKind: LLVMTypeKind = 1;
-#[doc = "< 32 bit floating point type"]
-pub const LLVMTypeKind_LLVMFloatTypeKind: LLVMTypeKind = 2;
-#[doc = "< 64 bit floating point type"]
-pub const LLVMTypeKind_LLVMDoubleTypeKind: LLVMTypeKind = 3;
-#[doc = "< 80 bit floating point type (X87)"]
-pub const LLVMTypeKind_LLVMX86_FP80TypeKind: LLVMTypeKind = 4;
-#[doc = "< 128 bit floating point type (112-bit mantissa)"]
-pub const LLVMTypeKind_LLVMFP128TypeKind: LLVMTypeKind = 5;
-#[doc = "< 128 bit floating point type (two 64-bits)"]
-pub const LLVMTypeKind_LLVMPPC_FP128TypeKind: LLVMTypeKind = 6;
-#[doc = "< Labels"]
-pub const LLVMTypeKind_LLVMLabelTypeKind: LLVMTypeKind = 7;
-#[doc = "< Arbitrary bit width integers"]
-pub const LLVMTypeKind_LLVMIntegerTypeKind: LLVMTypeKind = 8;
-#[doc = "< Functions"]
-pub const LLVMTypeKind_LLVMFunctionTypeKind: LLVMTypeKind = 9;
-#[doc = "< Structures"]
-pub const LLVMTypeKind_LLVMStructTypeKind: LLVMTypeKind = 10;
-#[doc = "< Arrays"]
-pub const LLVMTypeKind_LLVMArrayTypeKind: LLVMTypeKind = 11;
-#[doc = "< Pointers"]
-pub const LLVMTypeKind_LLVMPointerTypeKind: LLVMTypeKind = 12;
-#[doc = "< Fixed width SIMD vector type"]
-pub const LLVMTypeKind_LLVMVectorTypeKind: LLVMTypeKind = 13;
-#[doc = "< Metadata"]
-pub const LLVMTypeKind_LLVMMetadataTypeKind: LLVMTypeKind = 14;
-#[doc = "< X86 MMX"]
-pub const LLVMTypeKind_LLVMX86_MMXTypeKind: LLVMTypeKind = 15;
-#[doc = "< Tokens"]
-pub const LLVMTypeKind_LLVMTokenTypeKind: LLVMTypeKind = 16;
-#[doc = "< Scalable SIMD vector type"]
-pub const LLVMTypeKind_LLVMScalableVectorTypeKind: LLVMTypeKind = 17;
-#[doc = "< 16 bit brain floating point type"]
-pub const LLVMTypeKind_LLVMBFloatTypeKind: LLVMTypeKind = 18;
-#[doc = "< X86 AMX"]
-pub const LLVMTypeKind_LLVMX86_AMXTypeKind: LLVMTypeKind = 19;
-#[doc = "< Target extension type"]
-pub const LLVMTypeKind_LLVMTargetExtTypeKind: LLVMTypeKind = 20;
-pub type LLVMTypeKind = ::std::os::raw::c_int;
-#[doc = "< Externally visible function"]
-pub const LLVMLinkage_LLVMExternalLinkage: LLVMLinkage = 0;
-pub const LLVMLinkage_LLVMAvailableExternallyLinkage: LLVMLinkage = 1;
-#[doc = "< Keep one copy of function when linking (inline)"]
-pub const LLVMLinkage_LLVMLinkOnceAnyLinkage: LLVMLinkage = 2;
-#[doc = "< Same, but only replaced by something\nequivalent."]
-pub const LLVMLinkage_LLVMLinkOnceODRLinkage: LLVMLinkage = 3;
-#[doc = "< Obsolete"]
-pub const LLVMLinkage_LLVMLinkOnceODRAutoHideLinkage: LLVMLinkage = 4;
-#[doc = "< Keep one copy of function when linking (weak)"]
-pub const LLVMLinkage_LLVMWeakAnyLinkage: LLVMLinkage = 5;
-#[doc = "< Same, but only replaced by something\nequivalent."]
-pub const LLVMLinkage_LLVMWeakODRLinkage: LLVMLinkage = 6;
-#[doc = "< Special purpose, only applies to global arrays"]
-pub const LLVMLinkage_LLVMAppendingLinkage: LLVMLinkage = 7;
-#[doc = "< Rename collisions when linking (static\nfunctions)"]
-pub const LLVMLinkage_LLVMInternalLinkage: LLVMLinkage = 8;
-#[doc = "< Like Internal, but omit from symbol table"]
-pub const LLVMLinkage_LLVMPrivateLinkage: LLVMLinkage = 9;
-#[doc = "< Obsolete"]
-pub const LLVMLinkage_LLVMDLLImportLinkage: LLVMLinkage = 10;
-#[doc = "< Obsolete"]
-pub const LLVMLinkage_LLVMDLLExportLinkage: LLVMLinkage = 11;
-#[doc = "< ExternalWeak linkage description"]
-pub const LLVMLinkage_LLVMExternalWeakLinkage: LLVMLinkage = 12;
-#[doc = "< Obsolete"]
-pub const LLVMLinkage_LLVMGhostLinkage: LLVMLinkage = 13;
-#[doc = "< Tentative definitions"]
-pub const LLVMLinkage_LLVMCommonLinkage: LLVMLinkage = 14;
-#[doc = "< Like Private, but linker removes."]
-pub const LLVMLinkage_LLVMLinkerPrivateLinkage: LLVMLinkage = 15;
-#[doc = "< Like LinkerPrivate, but is weak."]
-pub const LLVMLinkage_LLVMLinkerPrivateWeakLinkage: LLVMLinkage = 16;
-pub type LLVMLinkage = ::std::os::raw::c_int;
-#[doc = "< The GV is visible"]
-pub const LLVMVisibility_LLVMDefaultVisibility: LLVMVisibility = 0;
-#[doc = "< The GV is hidden"]
-pub const LLVMVisibility_LLVMHiddenVisibility: LLVMVisibility = 1;
-#[doc = "< The GV is protected"]
-pub const LLVMVisibility_LLVMProtectedVisibility: LLVMVisibility = 2;
-pub type LLVMVisibility = ::std::os::raw::c_int;
-#[doc = "< Address of the GV is significant."]
-pub const LLVMUnnamedAddr_LLVMNoUnnamedAddr: LLVMUnnamedAddr = 0;
-#[doc = "< Address of the GV is locally insignificant."]
-pub const LLVMUnnamedAddr_LLVMLocalUnnamedAddr: LLVMUnnamedAddr = 1;
-#[doc = "< Address of the GV is globally insignificant."]
-pub const LLVMUnnamedAddr_LLVMGlobalUnnamedAddr: LLVMUnnamedAddr = 2;
-pub type LLVMUnnamedAddr = ::std::os::raw::c_int;
-pub const LLVMDLLStorageClass_LLVMDefaultStorageClass: LLVMDLLStorageClass = 0;
-#[doc = "< Function to be imported from DLL."]
-pub const LLVMDLLStorageClass_LLVMDLLImportStorageClass: LLVMDLLStorageClass = 1;
-#[doc = "< Function to be accessible from DLL."]
-pub const LLVMDLLStorageClass_LLVMDLLExportStorageClass: LLVMDLLStorageClass = 2;
-pub type LLVMDLLStorageClass = ::std::os::raw::c_int;
-pub const LLVMValueKind_LLVMArgumentValueKind: LLVMValueKind = 0;
-pub const LLVMValueKind_LLVMBasicBlockValueKind: LLVMValueKind = 1;
-pub const LLVMValueKind_LLVMMemoryUseValueKind: LLVMValueKind = 2;
-pub const LLVMValueKind_LLVMMemoryDefValueKind: LLVMValueKind = 3;
-pub const LLVMValueKind_LLVMMemoryPhiValueKind: LLVMValueKind = 4;
-pub const LLVMValueKind_LLVMFunctionValueKind: LLVMValueKind = 5;
-pub const LLVMValueKind_LLVMGlobalAliasValueKind: LLVMValueKind = 6;
-pub const LLVMValueKind_LLVMGlobalIFuncValueKind: LLVMValueKind = 7;
-pub const LLVMValueKind_LLVMGlobalVariableValueKind: LLVMValueKind = 8;
-pub const LLVMValueKind_LLVMBlockAddressValueKind: LLVMValueKind = 9;
-pub const LLVMValueKind_LLVMConstantExprValueKind: LLVMValueKind = 10;
-pub const LLVMValueKind_LLVMConstantArrayValueKind: LLVMValueKind = 11;
-pub const LLVMValueKind_LLVMConstantStructValueKind: LLVMValueKind = 12;
-pub const LLVMValueKind_LLVMConstantVectorValueKind: LLVMValueKind = 13;
-pub const LLVMValueKind_LLVMUndefValueValueKind: LLVMValueKind = 14;
-pub const LLVMValueKind_LLVMConstantAggregateZeroValueKind: LLVMValueKind = 15;
-pub const LLVMValueKind_LLVMConstantDataArrayValueKind: LLVMValueKind = 16;
-pub const LLVMValueKind_LLVMConstantDataVectorValueKind: LLVMValueKind = 17;
-pub const LLVMValueKind_LLVMConstantIntValueKind: LLVMValueKind = 18;
-pub const LLVMValueKind_LLVMConstantFPValueKind: LLVMValueKind = 19;
-pub const LLVMValueKind_LLVMConstantPointerNullValueKind: LLVMValueKind = 20;
-pub const LLVMValueKind_LLVMConstantTokenNoneValueKind: LLVMValueKind = 21;
-pub const LLVMValueKind_LLVMMetadataAsValueValueKind: LLVMValueKind = 22;
-pub const LLVMValueKind_LLVMInlineAsmValueKind: LLVMValueKind = 23;
-pub const LLVMValueKind_LLVMInstructionValueKind: LLVMValueKind = 24;
-pub const LLVMValueKind_LLVMPoisonValueValueKind: LLVMValueKind = 25;
-pub const LLVMValueKind_LLVMConstantTargetNoneValueKind: LLVMValueKind = 26;
-pub type LLVMValueKind = ::std::os::raw::c_int;
-#[doc = "< equal"]
-pub const LLVMIntPredicate_LLVMIntEQ: LLVMIntPredicate = 32;
-#[doc = "< not equal"]
-pub const LLVMIntPredicate_LLVMIntNE: LLVMIntPredicate = 33;
-#[doc = "< unsigned greater than"]
-pub const LLVMIntPredicate_LLVMIntUGT: LLVMIntPredicate = 34;
-#[doc = "< unsigned greater or equal"]
-pub const LLVMIntPredicate_LLVMIntUGE: LLVMIntPredicate = 35;
-#[doc = "< unsigned less than"]
-pub const LLVMIntPredicate_LLVMIntULT: LLVMIntPredicate = 36;
-#[doc = "< unsigned less or equal"]
-pub const LLVMIntPredicate_LLVMIntULE: LLVMIntPredicate = 37;
-#[doc = "< signed greater than"]
-pub const LLVMIntPredicate_LLVMIntSGT: LLVMIntPredicate = 38;
-#[doc = "< signed greater or equal"]
-pub const LLVMIntPredicate_LLVMIntSGE: LLVMIntPredicate = 39;
-#[doc = "< signed less than"]
-pub const LLVMIntPredicate_LLVMIntSLT: LLVMIntPredicate = 40;
-#[doc = "< signed less or equal"]
-pub const LLVMIntPredicate_LLVMIntSLE: LLVMIntPredicate = 41;
-pub type LLVMIntPredicate = ::std::os::raw::c_int;
-#[doc = "< Always false (always folded)"]
-pub const LLVMRealPredicate_LLVMRealPredicateFalse: LLVMRealPredicate = 0;
-#[doc = "< True if ordered and equal"]
-pub const LLVMRealPredicate_LLVMRealOEQ: LLVMRealPredicate = 1;
-#[doc = "< True if ordered and greater than"]
-pub const LLVMRealPredicate_LLVMRealOGT: LLVMRealPredicate = 2;
-#[doc = "< True if ordered and greater than or equal"]
-pub const LLVMRealPredicate_LLVMRealOGE: LLVMRealPredicate = 3;
-#[doc = "< True if ordered and less than"]
-pub const LLVMRealPredicate_LLVMRealOLT: LLVMRealPredicate = 4;
-#[doc = "< True if ordered and less than or equal"]
-pub const LLVMRealPredicate_LLVMRealOLE: LLVMRealPredicate = 5;
-#[doc = "< True if ordered and operands are unequal"]
-pub const LLVMRealPredicate_LLVMRealONE: LLVMRealPredicate = 6;
-#[doc = "< True if ordered (no nans)"]
-pub const LLVMRealPredicate_LLVMRealORD: LLVMRealPredicate = 7;
-#[doc = "< True if unordered: isnan(X) | isnan(Y)"]
-pub const LLVMRealPredicate_LLVMRealUNO: LLVMRealPredicate = 8;
-#[doc = "< True if unordered or equal"]
-pub const LLVMRealPredicate_LLVMRealUEQ: LLVMRealPredicate = 9;
-#[doc = "< True if unordered or greater than"]
-pub const LLVMRealPredicate_LLVMRealUGT: LLVMRealPredicate = 10;
-#[doc = "< True if unordered, greater than, or equal"]
-pub const LLVMRealPredicate_LLVMRealUGE: LLVMRealPredicate = 11;
-#[doc = "< True if unordered or less than"]
-pub const LLVMRealPredicate_LLVMRealULT: LLVMRealPredicate = 12;
-#[doc = "< True if unordered, less than, or equal"]
-pub const LLVMRealPredicate_LLVMRealULE: LLVMRealPredicate = 13;
-#[doc = "< True if unordered or not equal"]
-pub const LLVMRealPredicate_LLVMRealUNE: LLVMRealPredicate = 14;
-#[doc = "< Always true (always folded)"]
-pub const LLVMRealPredicate_LLVMRealPredicateTrue: LLVMRealPredicate = 15;
-pub type LLVMRealPredicate = ::std::os::raw::c_int;
-pub const LLVMThreadLocalMode_LLVMNotThreadLocal: LLVMThreadLocalMode = 0;
-pub const LLVMThreadLocalMode_LLVMGeneralDynamicTLSModel: LLVMThreadLocalMode = 1;
-pub const LLVMThreadLocalMode_LLVMLocalDynamicTLSModel: LLVMThreadLocalMode = 2;
-pub const LLVMThreadLocalMode_LLVMInitialExecTLSModel: LLVMThreadLocalMode = 3;
-pub const LLVMThreadLocalMode_LLVMLocalExecTLSModel: LLVMThreadLocalMode = 4;
-pub type LLVMThreadLocalMode = ::std::os::raw::c_int;
-#[doc = "< A load or store which is not atomic"]
-pub const LLVMAtomicOrdering_LLVMAtomicOrderingNotAtomic: LLVMAtomicOrdering = 0;
-#[doc = "< Lowest level of atomicity, guarantees\nsomewhat sane results, lock free."]
-pub const LLVMAtomicOrdering_LLVMAtomicOrderingUnordered: LLVMAtomicOrdering = 1;
-#[doc = "< guarantees that if you take all the\noperations affecting a specific address,\na consistent ordering exists"]
-pub const LLVMAtomicOrdering_LLVMAtomicOrderingMonotonic: LLVMAtomicOrdering = 2;
-#[doc = "< Acquire provides a barrier of the sort\nnecessary to acquire a lock to access other\nmemory with normal loads and stores."]
-pub const LLVMAtomicOrdering_LLVMAtomicOrderingAcquire: LLVMAtomicOrdering = 4;
-#[doc = "< Release is similar to Acquire, but with\na barrier of the sort necessary to release\na lock."]
-pub const LLVMAtomicOrdering_LLVMAtomicOrderingRelease: LLVMAtomicOrdering = 5;
-#[doc = "< provides both an Acquire and a\nRelease barrier (for fences and\noperations which both read and write\nmemory)."]
-pub const LLVMAtomicOrdering_LLVMAtomicOrderingAcquireRelease: LLVMAtomicOrdering = 6;
-#[doc = "< provides Acquire semantics\nfor loads and Release\nsemantics for stores.\nAdditionally, it guarantees\nthat a total ordering exists\nbetween all\nSequentiallyConsistent\noperations."]
-pub const LLVMAtomicOrdering_LLVMAtomicOrderingSequentiallyConsistent: LLVMAtomicOrdering = 7;
-pub type LLVMAtomicOrdering = ::std::os::raw::c_int;
-#[doc = "< Set the new value and return the one old"]
-pub const LLVMAtomicRMWBinOp_LLVMAtomicRMWBinOpXchg: LLVMAtomicRMWBinOp = 0;
-#[doc = "< Add a value and return the old one"]
-pub const LLVMAtomicRMWBinOp_LLVMAtomicRMWBinOpAdd: LLVMAtomicRMWBinOp = 1;
-#[doc = "< Subtract a value and return the old one"]
-pub const LLVMAtomicRMWBinOp_LLVMAtomicRMWBinOpSub: LLVMAtomicRMWBinOp = 2;
-#[doc = "< And a value and return the old one"]
-pub const LLVMAtomicRMWBinOp_LLVMAtomicRMWBinOpAnd: LLVMAtomicRMWBinOp = 3;
-#[doc = "< Not-And a value and return the old one"]
-pub const LLVMAtomicRMWBinOp_LLVMAtomicRMWBinOpNand: LLVMAtomicRMWBinOp = 4;
-#[doc = "< OR a value and return the old one"]
-pub const LLVMAtomicRMWBinOp_LLVMAtomicRMWBinOpOr: LLVMAtomicRMWBinOp = 5;
-#[doc = "< Xor a value and return the old one"]
-pub const LLVMAtomicRMWBinOp_LLVMAtomicRMWBinOpXor: LLVMAtomicRMWBinOp = 6;
-#[doc = "< Sets the value if it's greater than the\noriginal using a signed comparison and return\nthe old one"]
-pub const LLVMAtomicRMWBinOp_LLVMAtomicRMWBinOpMax: LLVMAtomicRMWBinOp = 7;
-#[doc = "< Sets the value if it's Smaller than the\noriginal using a signed comparison and return\nthe old one"]
-pub const LLVMAtomicRMWBinOp_LLVMAtomicRMWBinOpMin: LLVMAtomicRMWBinOp = 8;
-#[doc = "< Sets the value if it's greater than the\noriginal using an unsigned comparison and return\nthe old one"]
-pub const LLVMAtomicRMWBinOp_LLVMAtomicRMWBinOpUMax: LLVMAtomicRMWBinOp = 9;
-#[doc = "< Sets the value if it's greater than the\noriginal using an unsigned comparison and return\nthe old one"]
-pub const LLVMAtomicRMWBinOp_LLVMAtomicRMWBinOpUMin: LLVMAtomicRMWBinOp = 10;
-#[doc = "< Add a floating point value and return the\nold one"]
-pub const LLVMAtomicRMWBinOp_LLVMAtomicRMWBinOpFAdd: LLVMAtomicRMWBinOp = 11;
-#[doc = "< Subtract a floating point value and return the\nold one"]
-pub const LLVMAtomicRMWBinOp_LLVMAtomicRMWBinOpFSub: LLVMAtomicRMWBinOp = 12;
-#[doc = "< Sets the value if it's greater than the\noriginal using an floating point comparison and\nreturn the old one"]
-pub const LLVMAtomicRMWBinOp_LLVMAtomicRMWBinOpFMax: LLVMAtomicRMWBinOp = 13;
-#[doc = "< Sets the value if it's smaller than the\noriginal using an floating point comparison and\nreturn the old one"]
-pub const LLVMAtomicRMWBinOp_LLVMAtomicRMWBinOpFMin: LLVMAtomicRMWBinOp = 14;
-pub type LLVMAtomicRMWBinOp = ::std::os::raw::c_int;
-pub const LLVMDiagnosticSeverity_LLVMDSError: LLVMDiagnosticSeverity = 0;
-pub const LLVMDiagnosticSeverity_LLVMDSWarning: LLVMDiagnosticSeverity = 1;
-pub const LLVMDiagnosticSeverity_LLVMDSRemark: LLVMDiagnosticSeverity = 2;
-pub const LLVMDiagnosticSeverity_LLVMDSNote: LLVMDiagnosticSeverity = 3;
-pub type LLVMDiagnosticSeverity = ::std::os::raw::c_int;
-pub const LLVMInlineAsmDialect_LLVMInlineAsmDialectATT: LLVMInlineAsmDialect = 0;
-pub const LLVMInlineAsmDialect_LLVMInlineAsmDialectIntel: LLVMInlineAsmDialect = 1;
-pub type LLVMInlineAsmDialect = ::std::os::raw::c_int;
-#[doc = " Emits an error if two values disagree, otherwise the resulting value is\n that of the operands.\n\n @see Module::ModFlagBehavior::Error"]
-pub const LLVMModuleFlagBehavior_LLVMModuleFlagBehaviorError: LLVMModuleFlagBehavior = 0;
-#[doc = " Emits a warning if two values disagree. The result value will be the\n operand for the flag from the first module being linked.\n\n @see Module::ModFlagBehavior::Warning"]
-pub const LLVMModuleFlagBehavior_LLVMModuleFlagBehaviorWarning: LLVMModuleFlagBehavior = 1;
-#[doc = " Adds a requirement that another module flag be present and have a\n specified value after linking is performed. The value must be a metadata\n pair, where the first element of the pair is the ID of the module flag\n to be restricted, and the second element of the pair is the value the\n module flag should be restricted to. This behavior can be used to\n restrict the allowable results (via triggering of an error) of linking\n IDs with the **Override** behavior.\n\n @see Module::ModFlagBehavior::Require"]
-pub const LLVMModuleFlagBehavior_LLVMModuleFlagBehaviorRequire: LLVMModuleFlagBehavior = 2;
-#[doc = " Uses the specified value, regardless of the behavior or value of the\n other module. If both modules specify **Override**, but the values\n differ, an error will be emitted.\n\n @see Module::ModFlagBehavior::Override"]
-pub const LLVMModuleFlagBehavior_LLVMModuleFlagBehaviorOverride: LLVMModuleFlagBehavior = 3;
-#[doc = " Appends the two values, which are required to be metadata nodes.\n\n @see Module::ModFlagBehavior::Append"]
-pub const LLVMModuleFlagBehavior_LLVMModuleFlagBehaviorAppend: LLVMModuleFlagBehavior = 4;
-#[doc = " Appends the two values, which are required to be metadata\n nodes. However, duplicate entries in the second list are dropped\n during the append operation.\n\n @see Module::ModFlagBehavior::AppendUnique"]
-pub const LLVMModuleFlagBehavior_LLVMModuleFlagBehaviorAppendUnique: LLVMModuleFlagBehavior = 5;
-pub type LLVMModuleFlagBehavior = ::std::os::raw::c_int;
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMOpcode {
+    LLVMRet = 1,
+    LLVMBr = 2,
+    LLVMSwitch = 3,
+    LLVMIndirectBr = 4,
+    LLVMInvoke = 5,
+    LLVMUnreachable = 7,
+    LLVMCallBr = 67,
+    LLVMFNeg = 66,
+    LLVMAdd = 8,
+    LLVMFAdd = 9,
+    LLVMSub = 10,
+    LLVMFSub = 11,
+    LLVMMul = 12,
+    LLVMFMul = 13,
+    LLVMUDiv = 14,
+    LLVMSDiv = 15,
+    LLVMFDiv = 16,
+    LLVMURem = 17,
+    LLVMSRem = 18,
+    LLVMFRem = 19,
+    LLVMShl = 20,
+    LLVMLShr = 21,
+    LLVMAShr = 22,
+    LLVMAnd = 23,
+    LLVMOr = 24,
+    LLVMXor = 25,
+    LLVMAlloca = 26,
+    LLVMLoad = 27,
+    LLVMStore = 28,
+    LLVMGetElementPtr = 29,
+    LLVMTrunc = 30,
+    LLVMZExt = 31,
+    LLVMSExt = 32,
+    LLVMFPToUI = 33,
+    LLVMFPToSI = 34,
+    LLVMUIToFP = 35,
+    LLVMSIToFP = 36,
+    LLVMFPTrunc = 37,
+    LLVMFPExt = 38,
+    LLVMPtrToInt = 39,
+    LLVMIntToPtr = 40,
+    LLVMBitCast = 41,
+    LLVMAddrSpaceCast = 60,
+    LLVMICmp = 42,
+    LLVMFCmp = 43,
+    LLVMPHI = 44,
+    LLVMCall = 45,
+    LLVMSelect = 46,
+    LLVMUserOp1 = 47,
+    LLVMUserOp2 = 48,
+    LLVMVAArg = 49,
+    LLVMExtractElement = 50,
+    LLVMInsertElement = 51,
+    LLVMShuffleVector = 52,
+    LLVMExtractValue = 53,
+    LLVMInsertValue = 54,
+    LLVMFreeze = 68,
+    LLVMFence = 55,
+    LLVMAtomicCmpXchg = 56,
+    LLVMAtomicRMW = 57,
+    LLVMResume = 58,
+    LLVMLandingPad = 59,
+    LLVMCleanupRet = 61,
+    LLVMCatchRet = 62,
+    LLVMCatchPad = 63,
+    LLVMCleanupPad = 64,
+    LLVMCatchSwitch = 65,
+}
+#[repr(i32)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMTypeKind {
+    #[doc = "< type with no size"]
+    LLVMVoidTypeKind = 0,
+    #[doc = "< 16 bit floating point type"]
+    LLVMHalfTypeKind = 1,
+    #[doc = "< 32 bit floating point type"]
+    LLVMFloatTypeKind = 2,
+    #[doc = "< 64 bit floating point type"]
+    LLVMDoubleTypeKind = 3,
+    #[doc = "< 80 bit floating point type (X87)"]
+    LLVMX86_FP80TypeKind = 4,
+    #[doc = "< 128 bit floating point type (112-bit mantissa)"]
+    LLVMFP128TypeKind = 5,
+    #[doc = "< 128 bit floating point type (two 64-bits)"]
+    LLVMPPC_FP128TypeKind = 6,
+    #[doc = "< Labels"]
+    LLVMLabelTypeKind = 7,
+    #[doc = "< Arbitrary bit width integers"]
+    LLVMIntegerTypeKind = 8,
+    #[doc = "< Functions"]
+    LLVMFunctionTypeKind = 9,
+    #[doc = "< Structures"]
+    LLVMStructTypeKind = 10,
+    #[doc = "< Arrays"]
+    LLVMArrayTypeKind = 11,
+    #[doc = "< Pointers"]
+    LLVMPointerTypeKind = 12,
+    #[doc = "< Fixed width SIMD vector type"]
+    LLVMVectorTypeKind = 13,
+    #[doc = "< Metadata"]
+    LLVMMetadataTypeKind = 14,
+    #[doc = "< X86 MMX"]
+    LLVMX86_MMXTypeKind = 15,
+    #[doc = "< Tokens"]
+    LLVMTokenTypeKind = 16,
+    #[doc = "< Scalable SIMD vector type"]
+    LLVMScalableVectorTypeKind = 17,
+    #[doc = "< 16 bit brain floating point type"]
+    LLVMBFloatTypeKind = 18,
+    #[doc = "< X86 AMX"]
+    LLVMX86_AMXTypeKind = 19,
+    #[doc = "< Target extension type"]
+    LLVMTargetExtTypeKind = 20,
+}
+#[repr(i32)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMLinkage {
+    #[doc = "< Externally visible function"]
+    LLVMExternalLinkage = 0,
+    LLVMAvailableExternallyLinkage = 1,
+    #[doc = "< Keep one copy of function when linking (inline)"]
+    LLVMLinkOnceAnyLinkage = 2,
+    #[doc = "< Same, but only replaced by something\nequivalent."]
+    LLVMLinkOnceODRLinkage = 3,
+    #[doc = "< Obsolete"]
+    LLVMLinkOnceODRAutoHideLinkage = 4,
+    #[doc = "< Keep one copy of function when linking (weak)"]
+    LLVMWeakAnyLinkage = 5,
+    #[doc = "< Same, but only replaced by something\nequivalent."]
+    LLVMWeakODRLinkage = 6,
+    #[doc = "< Special purpose, only applies to global arrays"]
+    LLVMAppendingLinkage = 7,
+    #[doc = "< Rename collisions when linking (static\nfunctions)"]
+    LLVMInternalLinkage = 8,
+    #[doc = "< Like Internal, but omit from symbol table"]
+    LLVMPrivateLinkage = 9,
+    #[doc = "< Obsolete"]
+    LLVMDLLImportLinkage = 10,
+    #[doc = "< Obsolete"]
+    LLVMDLLExportLinkage = 11,
+    #[doc = "< ExternalWeak linkage description"]
+    LLVMExternalWeakLinkage = 12,
+    #[doc = "< Obsolete"]
+    LLVMGhostLinkage = 13,
+    #[doc = "< Tentative definitions"]
+    LLVMCommonLinkage = 14,
+    #[doc = "< Like Private, but linker removes."]
+    LLVMLinkerPrivateLinkage = 15,
+    #[doc = "< Like LinkerPrivate, but is weak."]
+    LLVMLinkerPrivateWeakLinkage = 16,
+}
+#[repr(i32)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMVisibility {
+    #[doc = "< The GV is visible"]
+    LLVMDefaultVisibility = 0,
+    #[doc = "< The GV is hidden"]
+    LLVMHiddenVisibility = 1,
+    #[doc = "< The GV is protected"]
+    LLVMProtectedVisibility = 2,
+}
+#[repr(i32)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMUnnamedAddr {
+    #[doc = "< Address of the GV is significant."]
+    LLVMNoUnnamedAddr = 0,
+    #[doc = "< Address of the GV is locally insignificant."]
+    LLVMLocalUnnamedAddr = 1,
+    #[doc = "< Address of the GV is globally insignificant."]
+    LLVMGlobalUnnamedAddr = 2,
+}
+#[repr(i32)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMDLLStorageClass {
+    LLVMDefaultStorageClass = 0,
+    #[doc = "< Function to be imported from DLL."]
+    LLVMDLLImportStorageClass = 1,
+    #[doc = "< Function to be accessible from DLL."]
+    LLVMDLLExportStorageClass = 2,
+}
+#[repr(i32)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMValueKind {
+    LLVMArgumentValueKind = 0,
+    LLVMBasicBlockValueKind = 1,
+    LLVMMemoryUseValueKind = 2,
+    LLVMMemoryDefValueKind = 3,
+    LLVMMemoryPhiValueKind = 4,
+    LLVMFunctionValueKind = 5,
+    LLVMGlobalAliasValueKind = 6,
+    LLVMGlobalIFuncValueKind = 7,
+    LLVMGlobalVariableValueKind = 8,
+    LLVMBlockAddressValueKind = 9,
+    LLVMConstantExprValueKind = 10,
+    LLVMConstantArrayValueKind = 11,
+    LLVMConstantStructValueKind = 12,
+    LLVMConstantVectorValueKind = 13,
+    LLVMUndefValueValueKind = 14,
+    LLVMConstantAggregateZeroValueKind = 15,
+    LLVMConstantDataArrayValueKind = 16,
+    LLVMConstantDataVectorValueKind = 17,
+    LLVMConstantIntValueKind = 18,
+    LLVMConstantFPValueKind = 19,
+    LLVMConstantPointerNullValueKind = 20,
+    LLVMConstantTokenNoneValueKind = 21,
+    LLVMMetadataAsValueValueKind = 22,
+    LLVMInlineAsmValueKind = 23,
+    LLVMInstructionValueKind = 24,
+    LLVMPoisonValueValueKind = 25,
+    LLVMConstantTargetNoneValueKind = 26,
+}
+#[repr(i32)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMIntPredicate {
+    #[doc = "< equal"]
+    LLVMIntEQ = 32,
+    #[doc = "< not equal"]
+    LLVMIntNE = 33,
+    #[doc = "< unsigned greater than"]
+    LLVMIntUGT = 34,
+    #[doc = "< unsigned greater or equal"]
+    LLVMIntUGE = 35,
+    #[doc = "< unsigned less than"]
+    LLVMIntULT = 36,
+    #[doc = "< unsigned less or equal"]
+    LLVMIntULE = 37,
+    #[doc = "< signed greater than"]
+    LLVMIntSGT = 38,
+    #[doc = "< signed greater or equal"]
+    LLVMIntSGE = 39,
+    #[doc = "< signed less than"]
+    LLVMIntSLT = 40,
+    #[doc = "< signed less or equal"]
+    LLVMIntSLE = 41,
+}
+#[repr(i32)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMRealPredicate {
+    #[doc = "< Always false (always folded)"]
+    LLVMRealPredicateFalse = 0,
+    #[doc = "< True if ordered and equal"]
+    LLVMRealOEQ = 1,
+    #[doc = "< True if ordered and greater than"]
+    LLVMRealOGT = 2,
+    #[doc = "< True if ordered and greater than or equal"]
+    LLVMRealOGE = 3,
+    #[doc = "< True if ordered and less than"]
+    LLVMRealOLT = 4,
+    #[doc = "< True if ordered and less than or equal"]
+    LLVMRealOLE = 5,
+    #[doc = "< True if ordered and operands are unequal"]
+    LLVMRealONE = 6,
+    #[doc = "< True if ordered (no nans)"]
+    LLVMRealORD = 7,
+    #[doc = "< True if unordered: isnan(X) | isnan(Y)"]
+    LLVMRealUNO = 8,
+    #[doc = "< True if unordered or equal"]
+    LLVMRealUEQ = 9,
+    #[doc = "< True if unordered or greater than"]
+    LLVMRealUGT = 10,
+    #[doc = "< True if unordered, greater than, or equal"]
+    LLVMRealUGE = 11,
+    #[doc = "< True if unordered or less than"]
+    LLVMRealULT = 12,
+    #[doc = "< True if unordered, less than, or equal"]
+    LLVMRealULE = 13,
+    #[doc = "< True if unordered or not equal"]
+    LLVMRealUNE = 14,
+    #[doc = "< Always true (always folded)"]
+    LLVMRealPredicateTrue = 15,
+}
+#[repr(i32)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMThreadLocalMode {
+    LLVMNotThreadLocal = 0,
+    LLVMGeneralDynamicTLSModel = 1,
+    LLVMLocalDynamicTLSModel = 2,
+    LLVMInitialExecTLSModel = 3,
+    LLVMLocalExecTLSModel = 4,
+}
+#[repr(i32)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMAtomicOrdering {
+    #[doc = "< A load or store which is not atomic"]
+    LLVMAtomicOrderingNotAtomic = 0,
+    #[doc = "< Lowest level of atomicity, guarantees\nsomewhat sane results, lock free."]
+    LLVMAtomicOrderingUnordered = 1,
+    #[doc = "< guarantees that if you take all the\noperations affecting a specific address,\na consistent ordering exists"]
+    LLVMAtomicOrderingMonotonic = 2,
+    #[doc = "< Acquire provides a barrier of the sort\nnecessary to acquire a lock to access other\nmemory with normal loads and stores."]
+    LLVMAtomicOrderingAcquire = 4,
+    #[doc = "< Release is similar to Acquire, but with\na barrier of the sort necessary to release\na lock."]
+    LLVMAtomicOrderingRelease = 5,
+    #[doc = "< provides both an Acquire and a\nRelease barrier (for fences and\noperations which both read and write\nmemory)."]
+    LLVMAtomicOrderingAcquireRelease = 6,
+    #[doc = "< provides Acquire semantics\nfor loads and Release\nsemantics for stores.\nAdditionally, it guarantees\nthat a total ordering exists\nbetween all\nSequentiallyConsistent\noperations."]
+    LLVMAtomicOrderingSequentiallyConsistent = 7,
+}
+#[repr(i32)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMAtomicRMWBinOp {
+    #[doc = "< Set the new value and return the one old"]
+    LLVMAtomicRMWBinOpXchg = 0,
+    #[doc = "< Add a value and return the old one"]
+    LLVMAtomicRMWBinOpAdd = 1,
+    #[doc = "< Subtract a value and return the old one"]
+    LLVMAtomicRMWBinOpSub = 2,
+    #[doc = "< And a value and return the old one"]
+    LLVMAtomicRMWBinOpAnd = 3,
+    #[doc = "< Not-And a value and return the old one"]
+    LLVMAtomicRMWBinOpNand = 4,
+    #[doc = "< OR a value and return the old one"]
+    LLVMAtomicRMWBinOpOr = 5,
+    #[doc = "< Xor a value and return the old one"]
+    LLVMAtomicRMWBinOpXor = 6,
+    #[doc = "< Sets the value if it's greater than the\noriginal using a signed comparison and return\nthe old one"]
+    LLVMAtomicRMWBinOpMax = 7,
+    #[doc = "< Sets the value if it's Smaller than the\noriginal using a signed comparison and return\nthe old one"]
+    LLVMAtomicRMWBinOpMin = 8,
+    #[doc = "< Sets the value if it's greater than the\noriginal using an unsigned comparison and return\nthe old one"]
+    LLVMAtomicRMWBinOpUMax = 9,
+    #[doc = "< Sets the value if it's greater than the\noriginal using an unsigned comparison and return\nthe old one"]
+    LLVMAtomicRMWBinOpUMin = 10,
+    #[doc = "< Add a floating point value and return the\nold one"]
+    LLVMAtomicRMWBinOpFAdd = 11,
+    #[doc = "< Subtract a floating point value and return the\nold one"]
+    LLVMAtomicRMWBinOpFSub = 12,
+    #[doc = "< Sets the value if it's greater than the\noriginal using an floating point comparison and\nreturn the old one"]
+    LLVMAtomicRMWBinOpFMax = 13,
+    #[doc = "< Sets the value if it's smaller than the\noriginal using an floating point comparison and\nreturn the old one"]
+    LLVMAtomicRMWBinOpFMin = 14,
+}
+#[repr(i32)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMDiagnosticSeverity {
+    LLVMDSError = 0,
+    LLVMDSWarning = 1,
+    LLVMDSRemark = 2,
+    LLVMDSNote = 3,
+}
+#[repr(i32)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMInlineAsmDialect {
+    LLVMInlineAsmDialectATT = 0,
+    LLVMInlineAsmDialectIntel = 1,
+}
+#[repr(i32)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMModuleFlagBehavior {
+    #[doc = " Emits an error if two values disagree, otherwise the resulting value is\n that of the operands.\n\n @see Module::ModFlagBehavior::Error"]
+    LLVMModuleFlagBehaviorError = 0,
+    #[doc = " Emits a warning if two values disagree. The result value will be the\n operand for the flag from the first module being linked.\n\n @see Module::ModFlagBehavior::Warning"]
+    LLVMModuleFlagBehaviorWarning = 1,
+    #[doc = " Adds a requirement that another module flag be present and have a\n specified value after linking is performed. The value must be a metadata\n pair, where the first element of the pair is the ID of the module flag\n to be restricted, and the second element of the pair is the value the\n module flag should be restricted to. This behavior can be used to\n restrict the allowable results (via triggering of an error) of linking\n IDs with the **Override** behavior.\n\n @see Module::ModFlagBehavior::Require"]
+    LLVMModuleFlagBehaviorRequire = 2,
+    #[doc = " Uses the specified value, regardless of the behavior or value of the\n other module. If both modules specify **Override**, but the values\n differ, an error will be emitted.\n\n @see Module::ModFlagBehavior::Override"]
+    LLVMModuleFlagBehaviorOverride = 3,
+    #[doc = " Appends the two values, which are required to be metadata nodes.\n\n @see Module::ModFlagBehavior::Append"]
+    LLVMModuleFlagBehaviorAppend = 4,
+    #[doc = " Appends the two values, which are required to be metadata\n nodes. However, duplicate entries in the second list are dropped\n during the append operation.\n\n @see Module::ModFlagBehavior::AppendUnique"]
+    LLVMModuleFlagBehaviorAppendUnique = 5,
+}
 pub type LLVMAttributeIndex = ::std::os::raw::c_uint;
 #[doc = " @defgroup LLVMCCoreContext Contexts\n\n Contexts are execution states for the core LLVM IR system.\n\n Most types are tied to a context instance. Multiple contexts can\n exist simultaneously. A single context is not thread safe. However,\n different contexts can execute on different threads simultaneously.\n\n @{"]
 pub type LLVMDiagnosticHandler = ::std::option::Option<
@@ -491,124 +542,128 @@ pub type LLVMDiagnosticHandler = ::std::option::Option<
 pub type LLVMYieldCallback = ::std::option::Option<
     unsafe extern "C" fn(arg1: LLVMContextRef, arg2: *mut ::std::os::raw::c_void),
 >;
-pub const LLVMDIFlags_LLVMDIFlagZero: LLVMDIFlags = 0;
-pub const LLVMDIFlags_LLVMDIFlagPrivate: LLVMDIFlags = 1;
-pub const LLVMDIFlags_LLVMDIFlagProtected: LLVMDIFlags = 2;
-pub const LLVMDIFlags_LLVMDIFlagPublic: LLVMDIFlags = 3;
-pub const LLVMDIFlags_LLVMDIFlagFwdDecl: LLVMDIFlags = 4;
-pub const LLVMDIFlags_LLVMDIFlagAppleBlock: LLVMDIFlags = 8;
-pub const LLVMDIFlags_LLVMDIFlagReservedBit4: LLVMDIFlags = 16;
-pub const LLVMDIFlags_LLVMDIFlagVirtual: LLVMDIFlags = 32;
-pub const LLVMDIFlags_LLVMDIFlagArtificial: LLVMDIFlags = 64;
-pub const LLVMDIFlags_LLVMDIFlagExplicit: LLVMDIFlags = 128;
-pub const LLVMDIFlags_LLVMDIFlagPrototyped: LLVMDIFlags = 256;
-pub const LLVMDIFlags_LLVMDIFlagObjcClassComplete: LLVMDIFlags = 512;
-pub const LLVMDIFlags_LLVMDIFlagObjectPointer: LLVMDIFlags = 1024;
-pub const LLVMDIFlags_LLVMDIFlagVector: LLVMDIFlags = 2048;
-pub const LLVMDIFlags_LLVMDIFlagStaticMember: LLVMDIFlags = 4096;
-pub const LLVMDIFlags_LLVMDIFlagLValueReference: LLVMDIFlags = 8192;
-pub const LLVMDIFlags_LLVMDIFlagRValueReference: LLVMDIFlags = 16384;
-pub const LLVMDIFlags_LLVMDIFlagReserved: LLVMDIFlags = 32768;
-pub const LLVMDIFlags_LLVMDIFlagSingleInheritance: LLVMDIFlags = 65536;
-pub const LLVMDIFlags_LLVMDIFlagMultipleInheritance: LLVMDIFlags = 131072;
-pub const LLVMDIFlags_LLVMDIFlagVirtualInheritance: LLVMDIFlags = 196608;
-pub const LLVMDIFlags_LLVMDIFlagIntroducedVirtual: LLVMDIFlags = 262144;
-pub const LLVMDIFlags_LLVMDIFlagBitField: LLVMDIFlags = 524288;
-pub const LLVMDIFlags_LLVMDIFlagNoReturn: LLVMDIFlags = 1048576;
-pub const LLVMDIFlags_LLVMDIFlagTypePassByValue: LLVMDIFlags = 4194304;
-pub const LLVMDIFlags_LLVMDIFlagTypePassByReference: LLVMDIFlags = 8388608;
-pub const LLVMDIFlags_LLVMDIFlagEnumClass: LLVMDIFlags = 16777216;
-pub const LLVMDIFlags_LLVMDIFlagFixedEnum: LLVMDIFlags = 16777216;
-pub const LLVMDIFlags_LLVMDIFlagThunk: LLVMDIFlags = 33554432;
-pub const LLVMDIFlags_LLVMDIFlagNonTrivial: LLVMDIFlags = 67108864;
-pub const LLVMDIFlags_LLVMDIFlagBigEndian: LLVMDIFlags = 134217728;
-pub const LLVMDIFlags_LLVMDIFlagLittleEndian: LLVMDIFlags = 268435456;
-pub const LLVMDIFlags_LLVMDIFlagIndirectVirtualBase: LLVMDIFlags = 36;
-pub const LLVMDIFlags_LLVMDIFlagAccessibility: LLVMDIFlags = 3;
-pub const LLVMDIFlags_LLVMDIFlagPtrToMemberRep: LLVMDIFlags = 196608;
+impl LLVMDIFlags {
+    pub const LLVMDIFlagFixedEnum: LLVMDIFlags = LLVMDIFlags::LLVMDIFlagEnumClass;
+}
+impl LLVMDIFlags {
+    pub const LLVMDIFlagAccessibility: LLVMDIFlags = LLVMDIFlags::LLVMDIFlagPublic;
+}
+impl LLVMDIFlags {
+    pub const LLVMDIFlagPtrToMemberRep: LLVMDIFlags = LLVMDIFlags::LLVMDIFlagVirtualInheritance;
+}
+#[repr(i32)]
 #[doc = " Debug info flags."]
-pub type LLVMDIFlags = ::std::os::raw::c_int;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageC89: LLVMDWARFSourceLanguage = 0;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageC: LLVMDWARFSourceLanguage = 1;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageAda83: LLVMDWARFSourceLanguage = 2;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageC_plus_plus: LLVMDWARFSourceLanguage = 3;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageCobol74: LLVMDWARFSourceLanguage = 4;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageCobol85: LLVMDWARFSourceLanguage = 5;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageFortran77: LLVMDWARFSourceLanguage = 6;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageFortran90: LLVMDWARFSourceLanguage = 7;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguagePascal83: LLVMDWARFSourceLanguage = 8;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageModula2: LLVMDWARFSourceLanguage = 9;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageJava: LLVMDWARFSourceLanguage = 10;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageC99: LLVMDWARFSourceLanguage = 11;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageAda95: LLVMDWARFSourceLanguage = 12;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageFortran95: LLVMDWARFSourceLanguage = 13;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguagePLI: LLVMDWARFSourceLanguage = 14;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageObjC: LLVMDWARFSourceLanguage = 15;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageObjC_plus_plus: LLVMDWARFSourceLanguage =
-    16;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageUPC: LLVMDWARFSourceLanguage = 17;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageD: LLVMDWARFSourceLanguage = 18;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguagePython: LLVMDWARFSourceLanguage = 19;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageOpenCL: LLVMDWARFSourceLanguage = 20;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageGo: LLVMDWARFSourceLanguage = 21;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageModula3: LLVMDWARFSourceLanguage = 22;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageHaskell: LLVMDWARFSourceLanguage = 23;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageC_plus_plus_03: LLVMDWARFSourceLanguage =
-    24;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageC_plus_plus_11: LLVMDWARFSourceLanguage =
-    25;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageOCaml: LLVMDWARFSourceLanguage = 26;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageRust: LLVMDWARFSourceLanguage = 27;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageC11: LLVMDWARFSourceLanguage = 28;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageSwift: LLVMDWARFSourceLanguage = 29;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageJulia: LLVMDWARFSourceLanguage = 30;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageDylan: LLVMDWARFSourceLanguage = 31;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageC_plus_plus_14: LLVMDWARFSourceLanguage =
-    32;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageFortran03: LLVMDWARFSourceLanguage = 33;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageFortran08: LLVMDWARFSourceLanguage = 34;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageRenderScript: LLVMDWARFSourceLanguage = 35;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageBLISS: LLVMDWARFSourceLanguage = 36;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageKotlin: LLVMDWARFSourceLanguage = 37;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageZig: LLVMDWARFSourceLanguage = 38;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageCrystal: LLVMDWARFSourceLanguage = 39;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageC_plus_plus_17: LLVMDWARFSourceLanguage =
-    40;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageC_plus_plus_20: LLVMDWARFSourceLanguage =
-    41;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageC17: LLVMDWARFSourceLanguage = 42;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageFortran18: LLVMDWARFSourceLanguage = 43;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageAda2005: LLVMDWARFSourceLanguage = 44;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageAda2012: LLVMDWARFSourceLanguage = 45;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageMojo: LLVMDWARFSourceLanguage = 46;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageMips_Assembler: LLVMDWARFSourceLanguage =
-    47;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageGOOGLE_RenderScript:
-    LLVMDWARFSourceLanguage = 48;
-pub const LLVMDWARFSourceLanguage_LLVMDWARFSourceLanguageBORLAND_Delphi: LLVMDWARFSourceLanguage =
-    49;
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMDIFlags {
+    LLVMDIFlagZero = 0,
+    LLVMDIFlagPrivate = 1,
+    LLVMDIFlagProtected = 2,
+    LLVMDIFlagPublic = 3,
+    LLVMDIFlagFwdDecl = 4,
+    LLVMDIFlagAppleBlock = 8,
+    LLVMDIFlagReservedBit4 = 16,
+    LLVMDIFlagVirtual = 32,
+    LLVMDIFlagArtificial = 64,
+    LLVMDIFlagExplicit = 128,
+    LLVMDIFlagPrototyped = 256,
+    LLVMDIFlagObjcClassComplete = 512,
+    LLVMDIFlagObjectPointer = 1024,
+    LLVMDIFlagVector = 2048,
+    LLVMDIFlagStaticMember = 4096,
+    LLVMDIFlagLValueReference = 8192,
+    LLVMDIFlagRValueReference = 16384,
+    LLVMDIFlagReserved = 32768,
+    LLVMDIFlagSingleInheritance = 65536,
+    LLVMDIFlagMultipleInheritance = 131072,
+    LLVMDIFlagVirtualInheritance = 196608,
+    LLVMDIFlagIntroducedVirtual = 262144,
+    LLVMDIFlagBitField = 524288,
+    LLVMDIFlagNoReturn = 1048576,
+    LLVMDIFlagTypePassByValue = 4194304,
+    LLVMDIFlagTypePassByReference = 8388608,
+    LLVMDIFlagEnumClass = 16777216,
+    LLVMDIFlagThunk = 33554432,
+    LLVMDIFlagNonTrivial = 67108864,
+    LLVMDIFlagBigEndian = 134217728,
+    LLVMDIFlagLittleEndian = 268435456,
+    LLVMDIFlagIndirectVirtualBase = 36,
+}
+#[repr(i32)]
 #[doc = " Source languages known by DWARF."]
-pub type LLVMDWARFSourceLanguage = ::std::os::raw::c_int;
-pub const LLVMDWARFEmissionKind_LLVMDWARFEmissionNone: LLVMDWARFEmissionKind = 0;
-pub const LLVMDWARFEmissionKind_LLVMDWARFEmissionFull: LLVMDWARFEmissionKind = 1;
-pub const LLVMDWARFEmissionKind_LLVMDWARFEmissionLineTablesOnly: LLVMDWARFEmissionKind = 2;
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMDWARFSourceLanguage {
+    LLVMDWARFSourceLanguageC89 = 0,
+    LLVMDWARFSourceLanguageC = 1,
+    LLVMDWARFSourceLanguageAda83 = 2,
+    LLVMDWARFSourceLanguageC_plus_plus = 3,
+    LLVMDWARFSourceLanguageCobol74 = 4,
+    LLVMDWARFSourceLanguageCobol85 = 5,
+    LLVMDWARFSourceLanguageFortran77 = 6,
+    LLVMDWARFSourceLanguageFortran90 = 7,
+    LLVMDWARFSourceLanguagePascal83 = 8,
+    LLVMDWARFSourceLanguageModula2 = 9,
+    LLVMDWARFSourceLanguageJava = 10,
+    LLVMDWARFSourceLanguageC99 = 11,
+    LLVMDWARFSourceLanguageAda95 = 12,
+    LLVMDWARFSourceLanguageFortran95 = 13,
+    LLVMDWARFSourceLanguagePLI = 14,
+    LLVMDWARFSourceLanguageObjC = 15,
+    LLVMDWARFSourceLanguageObjC_plus_plus = 16,
+    LLVMDWARFSourceLanguageUPC = 17,
+    LLVMDWARFSourceLanguageD = 18,
+    LLVMDWARFSourceLanguagePython = 19,
+    LLVMDWARFSourceLanguageOpenCL = 20,
+    LLVMDWARFSourceLanguageGo = 21,
+    LLVMDWARFSourceLanguageModula3 = 22,
+    LLVMDWARFSourceLanguageHaskell = 23,
+    LLVMDWARFSourceLanguageC_plus_plus_03 = 24,
+    LLVMDWARFSourceLanguageC_plus_plus_11 = 25,
+    LLVMDWARFSourceLanguageOCaml = 26,
+    LLVMDWARFSourceLanguageRust = 27,
+    LLVMDWARFSourceLanguageC11 = 28,
+    LLVMDWARFSourceLanguageSwift = 29,
+    LLVMDWARFSourceLanguageJulia = 30,
+    LLVMDWARFSourceLanguageDylan = 31,
+    LLVMDWARFSourceLanguageC_plus_plus_14 = 32,
+    LLVMDWARFSourceLanguageFortran03 = 33,
+    LLVMDWARFSourceLanguageFortran08 = 34,
+    LLVMDWARFSourceLanguageRenderScript = 35,
+    LLVMDWARFSourceLanguageBLISS = 36,
+    LLVMDWARFSourceLanguageKotlin = 37,
+    LLVMDWARFSourceLanguageZig = 38,
+    LLVMDWARFSourceLanguageCrystal = 39,
+    LLVMDWARFSourceLanguageC_plus_plus_17 = 40,
+    LLVMDWARFSourceLanguageC_plus_plus_20 = 41,
+    LLVMDWARFSourceLanguageC17 = 42,
+    LLVMDWARFSourceLanguageFortran18 = 43,
+    LLVMDWARFSourceLanguageAda2005 = 44,
+    LLVMDWARFSourceLanguageAda2012 = 45,
+    LLVMDWARFSourceLanguageMojo = 46,
+    LLVMDWARFSourceLanguageMips_Assembler = 47,
+    LLVMDWARFSourceLanguageGOOGLE_RenderScript = 48,
+    LLVMDWARFSourceLanguageBORLAND_Delphi = 49,
+}
+#[repr(i32)]
 #[doc = " The amount of debug information to emit."]
-pub type LLVMDWARFEmissionKind = ::std::os::raw::c_int;
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMDWARFEmissionKind {
+    LLVMDWARFEmissionNone = 0,
+    LLVMDWARFEmissionFull = 1,
+    LLVMDWARFEmissionLineTablesOnly = 2,
+}
 pub type LLVMMetadataKind = ::std::os::raw::c_uint;
 #[doc = " An LLVM DWARF type encoding."]
 pub type LLVMDWARFTypeEncoding = ::std::os::raw::c_uint;
-pub const LLVMDWARFMacinfoRecordType_LLVMDWARFMacinfoRecordTypeDefine: LLVMDWARFMacinfoRecordType =
-    1;
-pub const LLVMDWARFMacinfoRecordType_LLVMDWARFMacinfoRecordTypeMacro: LLVMDWARFMacinfoRecordType =
-    2;
-pub const LLVMDWARFMacinfoRecordType_LLVMDWARFMacinfoRecordTypeStartFile:
-    LLVMDWARFMacinfoRecordType = 3;
-pub const LLVMDWARFMacinfoRecordType_LLVMDWARFMacinfoRecordTypeEndFile: LLVMDWARFMacinfoRecordType =
-    4;
-pub const LLVMDWARFMacinfoRecordType_LLVMDWARFMacinfoRecordTypeVendorExt:
-    LLVMDWARFMacinfoRecordType = 255;
+#[repr(i32)]
 #[doc = " Describes the kind of macro declaration used for LLVMDIBuilderCreateMacro.\n @see llvm::dwarf::MacinfoRecordType\n @note Values are from DW_MACINFO_* constants in the DWARF specification."]
-pub type LLVMDWARFMacinfoRecordType = ::std::os::raw::c_int;
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMDWARFMacinfoRecordType {
+    LLVMDWARFMacinfoRecordTypeDefine = 1,
+    LLVMDWARFMacinfoRecordTypeMacro = 2,
+    LLVMDWARFMacinfoRecordTypeStartFile = 3,
+    LLVMDWARFMacinfoRecordTypeEndFile = 4,
+    LLVMDWARFMacinfoRecordTypeVendorExt = 255,
+}
 #[doc = " An opaque reference to a disassembler context."]
 pub type LLVMDisasmContextRef = *mut ::std::os::raw::c_void;
 #[doc = " The type for the operand information call back function.  This is called to\n get the symbolic information for an operand of an instruction.  Typically\n this is from the relocation information, symbol table, etc.  That block of\n information is saved when the disassembler context is created and passed to\n the call back in the DisInfo parameter.  The instruction containing operand\n is at the PC parameter.  For some instruction sets, there can be more than\n one operand with symbolic information.  To determine the symbolic operand\n information for each operand, the bytes for the specific operand in the\n instruction are specified by the Offset parameter and its byte widith is the\n OpSize parameter.  For instructions sets with fixed widths and one symbolic\n operand per instruction, the Offset parameter will be zero and InstSize\n parameter will be the instruction width.  The information is returned in\n TagBuf and is Triple specific with its specific information defined by the\n value of TagType for that Triple.  If symbolic information is returned the\n function * returns 1, otherwise it returns 0."]
@@ -642,10 +697,13 @@ pub struct LLVMOpaqueError {
 pub type LLVMErrorRef = *mut LLVMOpaqueError;
 #[doc = " Error type identifier."]
 pub type LLVMErrorTypeId = *const ::std::os::raw::c_void;
-pub const LLVMByteOrdering_LLVMBigEndian: LLVMByteOrdering = 0;
-pub const LLVMByteOrdering_LLVMLittleEndian: LLVMByteOrdering = 1;
+#[repr(i32)]
 #[doc = " @defgroup LLVMCTarget Target information\n @ingroup LLVMC\n\n @{"]
-pub type LLVMByteOrdering = ::std::os::raw::c_int;
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMByteOrdering {
+    LLVMBigEndian = 0,
+    LLVMLittleEndian = 1,
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct LLVMOpaqueTargetData {
@@ -671,30 +729,42 @@ pub struct LLVMTarget {
     _unused: [u8; 0],
 }
 pub type LLVMTargetRef = *mut LLVMTarget;
-pub const LLVMCodeGenOptLevel_LLVMCodeGenLevelNone: LLVMCodeGenOptLevel = 0;
-pub const LLVMCodeGenOptLevel_LLVMCodeGenLevelLess: LLVMCodeGenOptLevel = 1;
-pub const LLVMCodeGenOptLevel_LLVMCodeGenLevelDefault: LLVMCodeGenOptLevel = 2;
-pub const LLVMCodeGenOptLevel_LLVMCodeGenLevelAggressive: LLVMCodeGenOptLevel = 3;
-pub type LLVMCodeGenOptLevel = ::std::os::raw::c_int;
-pub const LLVMRelocMode_LLVMRelocDefault: LLVMRelocMode = 0;
-pub const LLVMRelocMode_LLVMRelocStatic: LLVMRelocMode = 1;
-pub const LLVMRelocMode_LLVMRelocPIC: LLVMRelocMode = 2;
-pub const LLVMRelocMode_LLVMRelocDynamicNoPic: LLVMRelocMode = 3;
-pub const LLVMRelocMode_LLVMRelocROPI: LLVMRelocMode = 4;
-pub const LLVMRelocMode_LLVMRelocRWPI: LLVMRelocMode = 5;
-pub const LLVMRelocMode_LLVMRelocROPI_RWPI: LLVMRelocMode = 6;
-pub type LLVMRelocMode = ::std::os::raw::c_int;
-pub const LLVMCodeModel_LLVMCodeModelDefault: LLVMCodeModel = 0;
-pub const LLVMCodeModel_LLVMCodeModelJITDefault: LLVMCodeModel = 1;
-pub const LLVMCodeModel_LLVMCodeModelTiny: LLVMCodeModel = 2;
-pub const LLVMCodeModel_LLVMCodeModelSmall: LLVMCodeModel = 3;
-pub const LLVMCodeModel_LLVMCodeModelKernel: LLVMCodeModel = 4;
-pub const LLVMCodeModel_LLVMCodeModelMedium: LLVMCodeModel = 5;
-pub const LLVMCodeModel_LLVMCodeModelLarge: LLVMCodeModel = 6;
-pub type LLVMCodeModel = ::std::os::raw::c_int;
-pub const LLVMCodeGenFileType_LLVMAssemblyFile: LLVMCodeGenFileType = 0;
-pub const LLVMCodeGenFileType_LLVMObjectFile: LLVMCodeGenFileType = 1;
-pub type LLVMCodeGenFileType = ::std::os::raw::c_int;
+#[repr(i32)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMCodeGenOptLevel {
+    LLVMCodeGenLevelNone = 0,
+    LLVMCodeGenLevelLess = 1,
+    LLVMCodeGenLevelDefault = 2,
+    LLVMCodeGenLevelAggressive = 3,
+}
+#[repr(i32)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMRelocMode {
+    LLVMRelocDefault = 0,
+    LLVMRelocStatic = 1,
+    LLVMRelocPIC = 2,
+    LLVMRelocDynamicNoPic = 3,
+    LLVMRelocROPI = 4,
+    LLVMRelocRWPI = 5,
+    LLVMRelocROPI_RWPI = 6,
+}
+#[repr(i32)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMCodeModel {
+    LLVMCodeModelDefault = 0,
+    LLVMCodeModelJITDefault = 1,
+    LLVMCodeModelTiny = 2,
+    LLVMCodeModelSmall = 3,
+    LLVMCodeModelKernel = 4,
+    LLVMCodeModelMedium = 5,
+    LLVMCodeModelLarge = 6,
+}
+#[repr(i32)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMCodeGenFileType {
+    LLVMAssemblyFile = 0,
+    LLVMObjectFile = 1,
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct LLVMOpaqueGenericValue {
@@ -1201,16 +1271,20 @@ fn bindgen_test_layout_LLVMOrcCDependenceMapPair() {
 }
 #[doc = " Represents a list of (JITDylibRef, (LLVMOrcSymbolStringPoolEntryRef*,\n size_t)) pairs that can be used to construct a SymbolDependenceMap."]
 pub type LLVMOrcCDependenceMapPairs = *mut LLVMOrcCDependenceMapPair;
-pub const LLVMOrcLookupKind_LLVMOrcLookupKindStatic: LLVMOrcLookupKind = 0;
-pub const LLVMOrcLookupKind_LLVMOrcLookupKindDLSym: LLVMOrcLookupKind = 1;
+#[repr(i32)]
 #[doc = " Lookup kind. This can be used by definition generators when deciding whether\n to produce a definition for a requested symbol.\n\n This enum should be kept in sync with llvm::orc::LookupKind."]
-pub type LLVMOrcLookupKind = ::std::os::raw::c_int;
-pub const LLVMOrcJITDylibLookupFlags_LLVMOrcJITDylibLookupFlagsMatchExportedSymbolsOnly:
-    LLVMOrcJITDylibLookupFlags = 0;
-pub const LLVMOrcJITDylibLookupFlags_LLVMOrcJITDylibLookupFlagsMatchAllSymbols:
-    LLVMOrcJITDylibLookupFlags = 1;
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMOrcLookupKind {
+    LLVMOrcLookupKindStatic = 0,
+    LLVMOrcLookupKindDLSym = 1,
+}
+#[repr(i32)]
 #[doc = " JITDylib lookup flags. This can be used by definition generators when\n deciding whether to produce a definition for a requested symbol.\n\n This enum should be kept in sync with llvm::orc::JITDylibLookupFlags."]
-pub type LLVMOrcJITDylibLookupFlags = ::std::os::raw::c_int;
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMOrcJITDylibLookupFlags {
+    LLVMOrcJITDylibLookupFlagsMatchExportedSymbolsOnly = 0,
+    LLVMOrcJITDylibLookupFlagsMatchAllSymbols = 1,
+}
 #[doc = " An element type for a JITDylib search order."]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -1259,12 +1333,13 @@ fn bindgen_test_layout_LLVMOrcCJITDylibSearchOrderElement() {
 }
 #[doc = " A JITDylib search order.\n\n The list is terminated with an element containing a null pointer for the JD\n field."]
 pub type LLVMOrcCJITDylibSearchOrder = *mut LLVMOrcCJITDylibSearchOrderElement;
-pub const LLVMOrcSymbolLookupFlags_LLVMOrcSymbolLookupFlagsRequiredSymbol:
-    LLVMOrcSymbolLookupFlags = 0;
-pub const LLVMOrcSymbolLookupFlags_LLVMOrcSymbolLookupFlagsWeaklyReferencedSymbol:
-    LLVMOrcSymbolLookupFlags = 1;
+#[repr(i32)]
 #[doc = " Symbol lookup flags for lookup sets. This should be kept in sync with\n llvm::orc::SymbolLookupFlags."]
-pub type LLVMOrcSymbolLookupFlags = ::std::os::raw::c_int;
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMOrcSymbolLookupFlags {
+    LLVMOrcSymbolLookupFlagsRequiredSymbol = 0,
+    LLVMOrcSymbolLookupFlagsWeaklyReferencedSymbol = 1,
+}
 #[doc = " An element type for a symbol lookup set."]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -1518,39 +1593,42 @@ pub struct LLVMOpaqueRelocationIterator {
     _unused: [u8; 0],
 }
 pub type LLVMRelocationIteratorRef = *mut LLVMOpaqueRelocationIterator;
-#[doc = "< Archive file."]
-pub const LLVMBinaryType_LLVMBinaryTypeArchive: LLVMBinaryType = 0;
-#[doc = "< Mach-O Universal Binary file."]
-pub const LLVMBinaryType_LLVMBinaryTypeMachOUniversalBinary: LLVMBinaryType = 1;
-#[doc = "< COFF Import file."]
-pub const LLVMBinaryType_LLVMBinaryTypeCOFFImportFile: LLVMBinaryType = 2;
-#[doc = "< LLVM IR."]
-pub const LLVMBinaryType_LLVMBinaryTypeIR: LLVMBinaryType = 3;
-#[doc = "< Windows resource (.res) file."]
-pub const LLVMBinaryType_LLVMBinaryTypeWinRes: LLVMBinaryType = 4;
-#[doc = "< COFF Object file."]
-pub const LLVMBinaryType_LLVMBinaryTypeCOFF: LLVMBinaryType = 5;
-#[doc = "< ELF 32-bit, little endian."]
-pub const LLVMBinaryType_LLVMBinaryTypeELF32L: LLVMBinaryType = 6;
-#[doc = "< ELF 32-bit, big endian."]
-pub const LLVMBinaryType_LLVMBinaryTypeELF32B: LLVMBinaryType = 7;
-#[doc = "< ELF 64-bit, little endian."]
-pub const LLVMBinaryType_LLVMBinaryTypeELF64L: LLVMBinaryType = 8;
-#[doc = "< ELF 64-bit, big endian."]
-pub const LLVMBinaryType_LLVMBinaryTypeELF64B: LLVMBinaryType = 9;
-#[doc = "< MachO 32-bit, little endian."]
-pub const LLVMBinaryType_LLVMBinaryTypeMachO32L: LLVMBinaryType = 10;
-#[doc = "< MachO 32-bit, big endian."]
-pub const LLVMBinaryType_LLVMBinaryTypeMachO32B: LLVMBinaryType = 11;
-#[doc = "< MachO 64-bit, little endian."]
-pub const LLVMBinaryType_LLVMBinaryTypeMachO64L: LLVMBinaryType = 12;
-#[doc = "< MachO 64-bit, big endian."]
-pub const LLVMBinaryType_LLVMBinaryTypeMachO64B: LLVMBinaryType = 13;
-#[doc = "< Web Assembly."]
-pub const LLVMBinaryType_LLVMBinaryTypeWasm: LLVMBinaryType = 14;
-#[doc = "< Offloading fatbinary."]
-pub const LLVMBinaryType_LLVMBinaryTypeOffload: LLVMBinaryType = 15;
-pub type LLVMBinaryType = ::std::os::raw::c_int;
+#[repr(i32)]
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMBinaryType {
+    #[doc = "< Archive file."]
+    LLVMBinaryTypeArchive = 0,
+    #[doc = "< Mach-O Universal Binary file."]
+    LLVMBinaryTypeMachOUniversalBinary = 1,
+    #[doc = "< COFF Import file."]
+    LLVMBinaryTypeCOFFImportFile = 2,
+    #[doc = "< LLVM IR."]
+    LLVMBinaryTypeIR = 3,
+    #[doc = "< Windows resource (.res) file."]
+    LLVMBinaryTypeWinRes = 4,
+    #[doc = "< COFF Object file."]
+    LLVMBinaryTypeCOFF = 5,
+    #[doc = "< ELF 32-bit, little endian."]
+    LLVMBinaryTypeELF32L = 6,
+    #[doc = "< ELF 32-bit, big endian."]
+    LLVMBinaryTypeELF32B = 7,
+    #[doc = "< ELF 64-bit, little endian."]
+    LLVMBinaryTypeELF64L = 8,
+    #[doc = "< ELF 64-bit, big endian."]
+    LLVMBinaryTypeELF64B = 9,
+    #[doc = "< MachO 32-bit, little endian."]
+    LLVMBinaryTypeMachO32L = 10,
+    #[doc = "< MachO 32-bit, big endian."]
+    LLVMBinaryTypeMachO32B = 11,
+    #[doc = "< MachO 64-bit, little endian."]
+    LLVMBinaryTypeMachO64L = 12,
+    #[doc = "< MachO 64-bit, big endian."]
+    LLVMBinaryTypeMachO64B = 13,
+    #[doc = "< Web Assembly."]
+    LLVMBinaryTypeWasm = 14,
+    #[doc = "< Offloading fatbinary."]
+    LLVMBinaryTypeOffload = 15,
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct LLVMOpaqueObjectFile {
@@ -1563,15 +1641,18 @@ pub type LLVMMemoryManagerCreateContextCallback = ::std::option::Option<
 >;
 pub type LLVMMemoryManagerNotifyTerminatingCallback =
     ::std::option::Option<unsafe extern "C" fn(CtxCtx: *mut ::std::os::raw::c_void)>;
-pub const LLVMRemarkType_LLVMRemarkTypeUnknown: LLVMRemarkType = 0;
-pub const LLVMRemarkType_LLVMRemarkTypePassed: LLVMRemarkType = 1;
-pub const LLVMRemarkType_LLVMRemarkTypeMissed: LLVMRemarkType = 2;
-pub const LLVMRemarkType_LLVMRemarkTypeAnalysis: LLVMRemarkType = 3;
-pub const LLVMRemarkType_LLVMRemarkTypeAnalysisFPCommute: LLVMRemarkType = 4;
-pub const LLVMRemarkType_LLVMRemarkTypeAnalysisAliasing: LLVMRemarkType = 5;
-pub const LLVMRemarkType_LLVMRemarkTypeFailure: LLVMRemarkType = 6;
+#[repr(i32)]
 #[doc = " The type of the emitted remark."]
-pub type LLVMRemarkType = ::std::os::raw::c_int;
+#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
+pub enum LLVMRemarkType {
+    LLVMRemarkTypeUnknown = 0,
+    LLVMRemarkTypePassed = 1,
+    LLVMRemarkTypeMissed = 2,
+    LLVMRemarkTypeAnalysis = 3,
+    LLVMRemarkTypeAnalysisFPCommute = 4,
+    LLVMRemarkTypeAnalysisAliasing = 5,
+    LLVMRemarkTypeFailure = 6,
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct LLVMRemarkOpaqueString {
