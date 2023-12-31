@@ -31,11 +31,16 @@ fn generate(llvm_path: &Path) {
         })
         .clang_arg(&format!("-I{}/include", llvm_path.to_str().unwrap()))
         .clang_arg(&format!("-I{}/build/include", llvm_path.to_str().unwrap()));
-    for entry in llvm_path.join("include/llvm-c").read_dir().unwrap() {
-        let entry = entry.unwrap();
-        let path = entry.path();
-        if path.is_file() {
-            builder = builder.header(path.to_str().unwrap());
+    let mut dirs_to_read = vec![llvm_path.join("include/llvm-c")];
+    while let Some(dir) = dirs_to_read.pop() {
+        for entry in dir.read_dir().unwrap() {
+            let entry = entry.unwrap();
+            let path = entry.path();
+            if path.is_dir() {
+                dirs_to_read.push(path);
+            } else if path.is_file() {
+                builder = builder.header(path.to_str().unwrap());
+            }
         }
     }
 

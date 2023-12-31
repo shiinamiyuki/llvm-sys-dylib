@@ -1687,6 +1687,13 @@ pub struct LLVMRemarkOpaqueParser {
     _unused: [u8; 0],
 }
 pub type LLVMRemarkParserRef = *mut LLVMRemarkOpaqueParser;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct LLVMOpaquePassBuilderOptions {
+    _unused: [u8; 0],
+}
+#[doc = " A set of options passed which are attached to the Pass Manager upon run.\n\n This corresponds to an llvm::LLVMPassBuilderOptions instance\n\n The details for how the different properties of this structure are used can\n be found in the source for LLVMRunPasses"]
+pub type LLVMPassBuilderOptionsRef = *mut LLVMOpaquePassBuilderOptions;
 extern crate libloading;
 pub struct LLVM {
     __library: ::libloading::Library,
@@ -5836,117 +5843,12 @@ pub struct LLVM {
         unsafe extern "C" fn(ErrMsg: *const ::std::os::raw::c_char) -> LLVMErrorRef,
         ::libloading::Error,
     >,
-    pub LLVMInitializeAArch64TargetInfo: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeAMDGPUTargetInfo: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeARMTargetInfo: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeAVRTargetInfo: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeBPFTargetInfo: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeHexagonTargetInfo: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeLanaiTargetInfo: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeLoongArchTargetInfo: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeMipsTargetInfo: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeMSP430TargetInfo: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeNVPTXTargetInfo: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializePowerPCTargetInfo: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeRISCVTargetInfo: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeSparcTargetInfo: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeSystemZTargetInfo: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeVETargetInfo: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeWebAssemblyTargetInfo: Result<unsafe extern "C" fn(), ::libloading::Error>,
     pub LLVMInitializeX86TargetInfo: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeXCoreTargetInfo: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeAArch64Target: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeAMDGPUTarget: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeARMTarget: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeAVRTarget: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeBPFTarget: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeHexagonTarget: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeLanaiTarget: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeLoongArchTarget: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeMipsTarget: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeMSP430Target: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeNVPTXTarget: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializePowerPCTarget: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeRISCVTarget: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeSparcTarget: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeSystemZTarget: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeVETarget: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeWebAssemblyTarget: Result<unsafe extern "C" fn(), ::libloading::Error>,
     pub LLVMInitializeX86Target: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeXCoreTarget: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeAArch64TargetMC: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeAMDGPUTargetMC: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeARMTargetMC: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeAVRTargetMC: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeBPFTargetMC: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeHexagonTargetMC: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeLanaiTargetMC: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeLoongArchTargetMC: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeMipsTargetMC: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeMSP430TargetMC: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeNVPTXTargetMC: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializePowerPCTargetMC: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeRISCVTargetMC: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeSparcTargetMC: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeSystemZTargetMC: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeVETargetMC: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeWebAssemblyTargetMC: Result<unsafe extern "C" fn(), ::libloading::Error>,
     pub LLVMInitializeX86TargetMC: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeXCoreTargetMC: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeAArch64AsmPrinter: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeAMDGPUAsmPrinter: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeARMAsmPrinter: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeAVRAsmPrinter: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeBPFAsmPrinter: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeHexagonAsmPrinter: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeLanaiAsmPrinter: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeLoongArchAsmPrinter: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeMipsAsmPrinter: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeMSP430AsmPrinter: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeNVPTXAsmPrinter: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializePowerPCAsmPrinter: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeRISCVAsmPrinter: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeSparcAsmPrinter: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeSystemZAsmPrinter: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeVEAsmPrinter: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeWebAssemblyAsmPrinter: Result<unsafe extern "C" fn(), ::libloading::Error>,
     pub LLVMInitializeX86AsmPrinter: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeXCoreAsmPrinter: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeAArch64AsmParser: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeAMDGPUAsmParser: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeARMAsmParser: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeAVRAsmParser: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeBPFAsmParser: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeHexagonAsmParser: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeLanaiAsmParser: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeLoongArchAsmParser: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeMipsAsmParser: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeMSP430AsmParser: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializePowerPCAsmParser: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeRISCVAsmParser: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeSparcAsmParser: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeSystemZAsmParser: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeVEAsmParser: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeWebAssemblyAsmParser: Result<unsafe extern "C" fn(), ::libloading::Error>,
     pub LLVMInitializeX86AsmParser: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeAArch64Disassembler: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeAMDGPUDisassembler: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeARMDisassembler: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeAVRDisassembler: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeBPFDisassembler: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeHexagonDisassembler: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeLanaiDisassembler: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeLoongArchDisassembler: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeMipsDisassembler: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeMSP430Disassembler: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializePowerPCDisassembler: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeRISCVDisassembler: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeSparcDisassembler: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeSystemZDisassembler: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeVEDisassembler: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeWebAssemblyDisassembler: Result<unsafe extern "C" fn(), ::libloading::Error>,
     pub LLVMInitializeX86Disassembler: Result<unsafe extern "C" fn(), ::libloading::Error>,
-    pub LLVMInitializeXCoreDisassembler: Result<unsafe extern "C" fn(), ::libloading::Error>,
     pub LLVMGetModuleDataLayout:
         Result<unsafe extern "C" fn(M: LLVMModuleRef) -> LLVMTargetDataRef, ::libloading::Error>,
     pub LLVMSetModuleDataLayout:
@@ -7117,6 +7019,76 @@ pub struct LLVM {
         ),
         ::libloading::Error,
     >,
+    pub LLVMRunPasses: Result<
+        unsafe extern "C" fn(
+            M: LLVMModuleRef,
+            Passes: *const ::std::os::raw::c_char,
+            TM: LLVMTargetMachineRef,
+            Options: LLVMPassBuilderOptionsRef,
+        ) -> LLVMErrorRef,
+        ::libloading::Error,
+    >,
+    pub LLVMCreatePassBuilderOptions:
+        Result<unsafe extern "C" fn() -> LLVMPassBuilderOptionsRef, ::libloading::Error>,
+    pub LLVMPassBuilderOptionsSetVerifyEach: Result<
+        unsafe extern "C" fn(Options: LLVMPassBuilderOptionsRef, VerifyEach: LLVMBool),
+        ::libloading::Error,
+    >,
+    pub LLVMPassBuilderOptionsSetDebugLogging: Result<
+        unsafe extern "C" fn(Options: LLVMPassBuilderOptionsRef, DebugLogging: LLVMBool),
+        ::libloading::Error,
+    >,
+    pub LLVMPassBuilderOptionsSetLoopInterleaving: Result<
+        unsafe extern "C" fn(Options: LLVMPassBuilderOptionsRef, LoopInterleaving: LLVMBool),
+        ::libloading::Error,
+    >,
+    pub LLVMPassBuilderOptionsSetLoopVectorization: Result<
+        unsafe extern "C" fn(Options: LLVMPassBuilderOptionsRef, LoopVectorization: LLVMBool),
+        ::libloading::Error,
+    >,
+    pub LLVMPassBuilderOptionsSetSLPVectorization: Result<
+        unsafe extern "C" fn(Options: LLVMPassBuilderOptionsRef, SLPVectorization: LLVMBool),
+        ::libloading::Error,
+    >,
+    pub LLVMPassBuilderOptionsSetLoopUnrolling: Result<
+        unsafe extern "C" fn(Options: LLVMPassBuilderOptionsRef, LoopUnrolling: LLVMBool),
+        ::libloading::Error,
+    >,
+    pub LLVMPassBuilderOptionsSetForgetAllSCEVInLoopUnroll: Result<
+        unsafe extern "C" fn(
+            Options: LLVMPassBuilderOptionsRef,
+            ForgetAllSCEVInLoopUnroll: LLVMBool,
+        ),
+        ::libloading::Error,
+    >,
+    pub LLVMPassBuilderOptionsSetLicmMssaOptCap: Result<
+        unsafe extern "C" fn(
+            Options: LLVMPassBuilderOptionsRef,
+            LicmMssaOptCap: ::std::os::raw::c_uint,
+        ),
+        ::libloading::Error,
+    >,
+    pub LLVMPassBuilderOptionsSetLicmMssaNoAccForPromotionCap: Result<
+        unsafe extern "C" fn(
+            Options: LLVMPassBuilderOptionsRef,
+            LicmMssaNoAccForPromotionCap: ::std::os::raw::c_uint,
+        ),
+        ::libloading::Error,
+    >,
+    pub LLVMPassBuilderOptionsSetCallGraphProfile: Result<
+        unsafe extern "C" fn(Options: LLVMPassBuilderOptionsRef, CallGraphProfile: LLVMBool),
+        ::libloading::Error,
+    >,
+    pub LLVMPassBuilderOptionsSetMergeFunctions: Result<
+        unsafe extern "C" fn(Options: LLVMPassBuilderOptionsRef, MergeFunctions: LLVMBool),
+        ::libloading::Error,
+    >,
+    pub LLVMPassBuilderOptionsSetInlinerThreshold: Result<
+        unsafe extern "C" fn(Options: LLVMPassBuilderOptionsRef, Threshold: ::std::os::raw::c_int),
+        ::libloading::Error,
+    >,
+    pub LLVMDisposePassBuilderOptions:
+        Result<unsafe extern "C" fn(Options: LLVMPassBuilderOptionsRef), ::libloading::Error>,
 }
 impl LLVM {
     pub unsafe fn new<P>(path: P) -> Result<Self, ::libloading::Error>
@@ -8336,324 +8308,21 @@ impl LLVM {
         let LLVMDisposeErrorMessage = __library.get(b"LLVMDisposeErrorMessage\0").map(|sym| *sym);
         let LLVMGetStringErrorTypeId = __library.get(b"LLVMGetStringErrorTypeId\0").map(|sym| *sym);
         let LLVMCreateStringError = __library.get(b"LLVMCreateStringError\0").map(|sym| *sym);
-        let LLVMInitializeAArch64TargetInfo = __library
-            .get(b"LLVMInitializeAArch64TargetInfo\0")
-            .map(|sym| *sym);
-        let LLVMInitializeAMDGPUTargetInfo = __library
-            .get(b"LLVMInitializeAMDGPUTargetInfo\0")
-            .map(|sym| *sym);
-        let LLVMInitializeARMTargetInfo = __library
-            .get(b"LLVMInitializeARMTargetInfo\0")
-            .map(|sym| *sym);
-        let LLVMInitializeAVRTargetInfo = __library
-            .get(b"LLVMInitializeAVRTargetInfo\0")
-            .map(|sym| *sym);
-        let LLVMInitializeBPFTargetInfo = __library
-            .get(b"LLVMInitializeBPFTargetInfo\0")
-            .map(|sym| *sym);
-        let LLVMInitializeHexagonTargetInfo = __library
-            .get(b"LLVMInitializeHexagonTargetInfo\0")
-            .map(|sym| *sym);
-        let LLVMInitializeLanaiTargetInfo = __library
-            .get(b"LLVMInitializeLanaiTargetInfo\0")
-            .map(|sym| *sym);
-        let LLVMInitializeLoongArchTargetInfo = __library
-            .get(b"LLVMInitializeLoongArchTargetInfo\0")
-            .map(|sym| *sym);
-        let LLVMInitializeMipsTargetInfo = __library
-            .get(b"LLVMInitializeMipsTargetInfo\0")
-            .map(|sym| *sym);
-        let LLVMInitializeMSP430TargetInfo = __library
-            .get(b"LLVMInitializeMSP430TargetInfo\0")
-            .map(|sym| *sym);
-        let LLVMInitializeNVPTXTargetInfo = __library
-            .get(b"LLVMInitializeNVPTXTargetInfo\0")
-            .map(|sym| *sym);
-        let LLVMInitializePowerPCTargetInfo = __library
-            .get(b"LLVMInitializePowerPCTargetInfo\0")
-            .map(|sym| *sym);
-        let LLVMInitializeRISCVTargetInfo = __library
-            .get(b"LLVMInitializeRISCVTargetInfo\0")
-            .map(|sym| *sym);
-        let LLVMInitializeSparcTargetInfo = __library
-            .get(b"LLVMInitializeSparcTargetInfo\0")
-            .map(|sym| *sym);
-        let LLVMInitializeSystemZTargetInfo = __library
-            .get(b"LLVMInitializeSystemZTargetInfo\0")
-            .map(|sym| *sym);
-        let LLVMInitializeVETargetInfo = __library
-            .get(b"LLVMInitializeVETargetInfo\0")
-            .map(|sym| *sym);
-        let LLVMInitializeWebAssemblyTargetInfo = __library
-            .get(b"LLVMInitializeWebAssemblyTargetInfo\0")
-            .map(|sym| *sym);
         let LLVMInitializeX86TargetInfo = __library
             .get(b"LLVMInitializeX86TargetInfo\0")
             .map(|sym| *sym);
-        let LLVMInitializeXCoreTargetInfo = __library
-            .get(b"LLVMInitializeXCoreTargetInfo\0")
-            .map(|sym| *sym);
-        let LLVMInitializeAArch64Target = __library
-            .get(b"LLVMInitializeAArch64Target\0")
-            .map(|sym| *sym);
-        let LLVMInitializeAMDGPUTarget = __library
-            .get(b"LLVMInitializeAMDGPUTarget\0")
-            .map(|sym| *sym);
-        let LLVMInitializeARMTarget = __library.get(b"LLVMInitializeARMTarget\0").map(|sym| *sym);
-        let LLVMInitializeAVRTarget = __library.get(b"LLVMInitializeAVRTarget\0").map(|sym| *sym);
-        let LLVMInitializeBPFTarget = __library.get(b"LLVMInitializeBPFTarget\0").map(|sym| *sym);
-        let LLVMInitializeHexagonTarget = __library
-            .get(b"LLVMInitializeHexagonTarget\0")
-            .map(|sym| *sym);
-        let LLVMInitializeLanaiTarget = __library
-            .get(b"LLVMInitializeLanaiTarget\0")
-            .map(|sym| *sym);
-        let LLVMInitializeLoongArchTarget = __library
-            .get(b"LLVMInitializeLoongArchTarget\0")
-            .map(|sym| *sym);
-        let LLVMInitializeMipsTarget = __library.get(b"LLVMInitializeMipsTarget\0").map(|sym| *sym);
-        let LLVMInitializeMSP430Target = __library
-            .get(b"LLVMInitializeMSP430Target\0")
-            .map(|sym| *sym);
-        let LLVMInitializeNVPTXTarget = __library
-            .get(b"LLVMInitializeNVPTXTarget\0")
-            .map(|sym| *sym);
-        let LLVMInitializePowerPCTarget = __library
-            .get(b"LLVMInitializePowerPCTarget\0")
-            .map(|sym| *sym);
-        let LLVMInitializeRISCVTarget = __library
-            .get(b"LLVMInitializeRISCVTarget\0")
-            .map(|sym| *sym);
-        let LLVMInitializeSparcTarget = __library
-            .get(b"LLVMInitializeSparcTarget\0")
-            .map(|sym| *sym);
-        let LLVMInitializeSystemZTarget = __library
-            .get(b"LLVMInitializeSystemZTarget\0")
-            .map(|sym| *sym);
-        let LLVMInitializeVETarget = __library.get(b"LLVMInitializeVETarget\0").map(|sym| *sym);
-        let LLVMInitializeWebAssemblyTarget = __library
-            .get(b"LLVMInitializeWebAssemblyTarget\0")
-            .map(|sym| *sym);
         let LLVMInitializeX86Target = __library.get(b"LLVMInitializeX86Target\0").map(|sym| *sym);
-        let LLVMInitializeXCoreTarget = __library
-            .get(b"LLVMInitializeXCoreTarget\0")
-            .map(|sym| *sym);
-        let LLVMInitializeAArch64TargetMC = __library
-            .get(b"LLVMInitializeAArch64TargetMC\0")
-            .map(|sym| *sym);
-        let LLVMInitializeAMDGPUTargetMC = __library
-            .get(b"LLVMInitializeAMDGPUTargetMC\0")
-            .map(|sym| *sym);
-        let LLVMInitializeARMTargetMC = __library
-            .get(b"LLVMInitializeARMTargetMC\0")
-            .map(|sym| *sym);
-        let LLVMInitializeAVRTargetMC = __library
-            .get(b"LLVMInitializeAVRTargetMC\0")
-            .map(|sym| *sym);
-        let LLVMInitializeBPFTargetMC = __library
-            .get(b"LLVMInitializeBPFTargetMC\0")
-            .map(|sym| *sym);
-        let LLVMInitializeHexagonTargetMC = __library
-            .get(b"LLVMInitializeHexagonTargetMC\0")
-            .map(|sym| *sym);
-        let LLVMInitializeLanaiTargetMC = __library
-            .get(b"LLVMInitializeLanaiTargetMC\0")
-            .map(|sym| *sym);
-        let LLVMInitializeLoongArchTargetMC = __library
-            .get(b"LLVMInitializeLoongArchTargetMC\0")
-            .map(|sym| *sym);
-        let LLVMInitializeMipsTargetMC = __library
-            .get(b"LLVMInitializeMipsTargetMC\0")
-            .map(|sym| *sym);
-        let LLVMInitializeMSP430TargetMC = __library
-            .get(b"LLVMInitializeMSP430TargetMC\0")
-            .map(|sym| *sym);
-        let LLVMInitializeNVPTXTargetMC = __library
-            .get(b"LLVMInitializeNVPTXTargetMC\0")
-            .map(|sym| *sym);
-        let LLVMInitializePowerPCTargetMC = __library
-            .get(b"LLVMInitializePowerPCTargetMC\0")
-            .map(|sym| *sym);
-        let LLVMInitializeRISCVTargetMC = __library
-            .get(b"LLVMInitializeRISCVTargetMC\0")
-            .map(|sym| *sym);
-        let LLVMInitializeSparcTargetMC = __library
-            .get(b"LLVMInitializeSparcTargetMC\0")
-            .map(|sym| *sym);
-        let LLVMInitializeSystemZTargetMC = __library
-            .get(b"LLVMInitializeSystemZTargetMC\0")
-            .map(|sym| *sym);
-        let LLVMInitializeVETargetMC = __library.get(b"LLVMInitializeVETargetMC\0").map(|sym| *sym);
-        let LLVMInitializeWebAssemblyTargetMC = __library
-            .get(b"LLVMInitializeWebAssemblyTargetMC\0")
-            .map(|sym| *sym);
         let LLVMInitializeX86TargetMC = __library
             .get(b"LLVMInitializeX86TargetMC\0")
-            .map(|sym| *sym);
-        let LLVMInitializeXCoreTargetMC = __library
-            .get(b"LLVMInitializeXCoreTargetMC\0")
-            .map(|sym| *sym);
-        let LLVMInitializeAArch64AsmPrinter = __library
-            .get(b"LLVMInitializeAArch64AsmPrinter\0")
-            .map(|sym| *sym);
-        let LLVMInitializeAMDGPUAsmPrinter = __library
-            .get(b"LLVMInitializeAMDGPUAsmPrinter\0")
-            .map(|sym| *sym);
-        let LLVMInitializeARMAsmPrinter = __library
-            .get(b"LLVMInitializeARMAsmPrinter\0")
-            .map(|sym| *sym);
-        let LLVMInitializeAVRAsmPrinter = __library
-            .get(b"LLVMInitializeAVRAsmPrinter\0")
-            .map(|sym| *sym);
-        let LLVMInitializeBPFAsmPrinter = __library
-            .get(b"LLVMInitializeBPFAsmPrinter\0")
-            .map(|sym| *sym);
-        let LLVMInitializeHexagonAsmPrinter = __library
-            .get(b"LLVMInitializeHexagonAsmPrinter\0")
-            .map(|sym| *sym);
-        let LLVMInitializeLanaiAsmPrinter = __library
-            .get(b"LLVMInitializeLanaiAsmPrinter\0")
-            .map(|sym| *sym);
-        let LLVMInitializeLoongArchAsmPrinter = __library
-            .get(b"LLVMInitializeLoongArchAsmPrinter\0")
-            .map(|sym| *sym);
-        let LLVMInitializeMipsAsmPrinter = __library
-            .get(b"LLVMInitializeMipsAsmPrinter\0")
-            .map(|sym| *sym);
-        let LLVMInitializeMSP430AsmPrinter = __library
-            .get(b"LLVMInitializeMSP430AsmPrinter\0")
-            .map(|sym| *sym);
-        let LLVMInitializeNVPTXAsmPrinter = __library
-            .get(b"LLVMInitializeNVPTXAsmPrinter\0")
-            .map(|sym| *sym);
-        let LLVMInitializePowerPCAsmPrinter = __library
-            .get(b"LLVMInitializePowerPCAsmPrinter\0")
-            .map(|sym| *sym);
-        let LLVMInitializeRISCVAsmPrinter = __library
-            .get(b"LLVMInitializeRISCVAsmPrinter\0")
-            .map(|sym| *sym);
-        let LLVMInitializeSparcAsmPrinter = __library
-            .get(b"LLVMInitializeSparcAsmPrinter\0")
-            .map(|sym| *sym);
-        let LLVMInitializeSystemZAsmPrinter = __library
-            .get(b"LLVMInitializeSystemZAsmPrinter\0")
-            .map(|sym| *sym);
-        let LLVMInitializeVEAsmPrinter = __library
-            .get(b"LLVMInitializeVEAsmPrinter\0")
-            .map(|sym| *sym);
-        let LLVMInitializeWebAssemblyAsmPrinter = __library
-            .get(b"LLVMInitializeWebAssemblyAsmPrinter\0")
             .map(|sym| *sym);
         let LLVMInitializeX86AsmPrinter = __library
             .get(b"LLVMInitializeX86AsmPrinter\0")
             .map(|sym| *sym);
-        let LLVMInitializeXCoreAsmPrinter = __library
-            .get(b"LLVMInitializeXCoreAsmPrinter\0")
-            .map(|sym| *sym);
-        let LLVMInitializeAArch64AsmParser = __library
-            .get(b"LLVMInitializeAArch64AsmParser\0")
-            .map(|sym| *sym);
-        let LLVMInitializeAMDGPUAsmParser = __library
-            .get(b"LLVMInitializeAMDGPUAsmParser\0")
-            .map(|sym| *sym);
-        let LLVMInitializeARMAsmParser = __library
-            .get(b"LLVMInitializeARMAsmParser\0")
-            .map(|sym| *sym);
-        let LLVMInitializeAVRAsmParser = __library
-            .get(b"LLVMInitializeAVRAsmParser\0")
-            .map(|sym| *sym);
-        let LLVMInitializeBPFAsmParser = __library
-            .get(b"LLVMInitializeBPFAsmParser\0")
-            .map(|sym| *sym);
-        let LLVMInitializeHexagonAsmParser = __library
-            .get(b"LLVMInitializeHexagonAsmParser\0")
-            .map(|sym| *sym);
-        let LLVMInitializeLanaiAsmParser = __library
-            .get(b"LLVMInitializeLanaiAsmParser\0")
-            .map(|sym| *sym);
-        let LLVMInitializeLoongArchAsmParser = __library
-            .get(b"LLVMInitializeLoongArchAsmParser\0")
-            .map(|sym| *sym);
-        let LLVMInitializeMipsAsmParser = __library
-            .get(b"LLVMInitializeMipsAsmParser\0")
-            .map(|sym| *sym);
-        let LLVMInitializeMSP430AsmParser = __library
-            .get(b"LLVMInitializeMSP430AsmParser\0")
-            .map(|sym| *sym);
-        let LLVMInitializePowerPCAsmParser = __library
-            .get(b"LLVMInitializePowerPCAsmParser\0")
-            .map(|sym| *sym);
-        let LLVMInitializeRISCVAsmParser = __library
-            .get(b"LLVMInitializeRISCVAsmParser\0")
-            .map(|sym| *sym);
-        let LLVMInitializeSparcAsmParser = __library
-            .get(b"LLVMInitializeSparcAsmParser\0")
-            .map(|sym| *sym);
-        let LLVMInitializeSystemZAsmParser = __library
-            .get(b"LLVMInitializeSystemZAsmParser\0")
-            .map(|sym| *sym);
-        let LLVMInitializeVEAsmParser = __library
-            .get(b"LLVMInitializeVEAsmParser\0")
-            .map(|sym| *sym);
-        let LLVMInitializeWebAssemblyAsmParser = __library
-            .get(b"LLVMInitializeWebAssemblyAsmParser\0")
-            .map(|sym| *sym);
         let LLVMInitializeX86AsmParser = __library
             .get(b"LLVMInitializeX86AsmParser\0")
             .map(|sym| *sym);
-        let LLVMInitializeAArch64Disassembler = __library
-            .get(b"LLVMInitializeAArch64Disassembler\0")
-            .map(|sym| *sym);
-        let LLVMInitializeAMDGPUDisassembler = __library
-            .get(b"LLVMInitializeAMDGPUDisassembler\0")
-            .map(|sym| *sym);
-        let LLVMInitializeARMDisassembler = __library
-            .get(b"LLVMInitializeARMDisassembler\0")
-            .map(|sym| *sym);
-        let LLVMInitializeAVRDisassembler = __library
-            .get(b"LLVMInitializeAVRDisassembler\0")
-            .map(|sym| *sym);
-        let LLVMInitializeBPFDisassembler = __library
-            .get(b"LLVMInitializeBPFDisassembler\0")
-            .map(|sym| *sym);
-        let LLVMInitializeHexagonDisassembler = __library
-            .get(b"LLVMInitializeHexagonDisassembler\0")
-            .map(|sym| *sym);
-        let LLVMInitializeLanaiDisassembler = __library
-            .get(b"LLVMInitializeLanaiDisassembler\0")
-            .map(|sym| *sym);
-        let LLVMInitializeLoongArchDisassembler = __library
-            .get(b"LLVMInitializeLoongArchDisassembler\0")
-            .map(|sym| *sym);
-        let LLVMInitializeMipsDisassembler = __library
-            .get(b"LLVMInitializeMipsDisassembler\0")
-            .map(|sym| *sym);
-        let LLVMInitializeMSP430Disassembler = __library
-            .get(b"LLVMInitializeMSP430Disassembler\0")
-            .map(|sym| *sym);
-        let LLVMInitializePowerPCDisassembler = __library
-            .get(b"LLVMInitializePowerPCDisassembler\0")
-            .map(|sym| *sym);
-        let LLVMInitializeRISCVDisassembler = __library
-            .get(b"LLVMInitializeRISCVDisassembler\0")
-            .map(|sym| *sym);
-        let LLVMInitializeSparcDisassembler = __library
-            .get(b"LLVMInitializeSparcDisassembler\0")
-            .map(|sym| *sym);
-        let LLVMInitializeSystemZDisassembler = __library
-            .get(b"LLVMInitializeSystemZDisassembler\0")
-            .map(|sym| *sym);
-        let LLVMInitializeVEDisassembler = __library
-            .get(b"LLVMInitializeVEDisassembler\0")
-            .map(|sym| *sym);
-        let LLVMInitializeWebAssemblyDisassembler = __library
-            .get(b"LLVMInitializeWebAssemblyDisassembler\0")
-            .map(|sym| *sym);
         let LLVMInitializeX86Disassembler = __library
             .get(b"LLVMInitializeX86Disassembler\0")
-            .map(|sym| *sym);
-        let LLVMInitializeXCoreDisassembler = __library
-            .get(b"LLVMInitializeXCoreDisassembler\0")
             .map(|sym| *sym);
         let LLVMGetModuleDataLayout = __library.get(b"LLVMGetModuleDataLayout\0").map(|sym| *sym);
         let LLVMSetModuleDataLayout = __library.get(b"LLVMSetModuleDataLayout\0").map(|sym| *sym);
@@ -9208,6 +8877,49 @@ impl LLVM {
             .get(b"LLVMSearchForAddressOfSymbol\0")
             .map(|sym| *sym);
         let LLVMAddSymbol = __library.get(b"LLVMAddSymbol\0").map(|sym| *sym);
+        let LLVMRunPasses = __library.get(b"LLVMRunPasses\0").map(|sym| *sym);
+        let LLVMCreatePassBuilderOptions = __library
+            .get(b"LLVMCreatePassBuilderOptions\0")
+            .map(|sym| *sym);
+        let LLVMPassBuilderOptionsSetVerifyEach = __library
+            .get(b"LLVMPassBuilderOptionsSetVerifyEach\0")
+            .map(|sym| *sym);
+        let LLVMPassBuilderOptionsSetDebugLogging = __library
+            .get(b"LLVMPassBuilderOptionsSetDebugLogging\0")
+            .map(|sym| *sym);
+        let LLVMPassBuilderOptionsSetLoopInterleaving = __library
+            .get(b"LLVMPassBuilderOptionsSetLoopInterleaving\0")
+            .map(|sym| *sym);
+        let LLVMPassBuilderOptionsSetLoopVectorization = __library
+            .get(b"LLVMPassBuilderOptionsSetLoopVectorization\0")
+            .map(|sym| *sym);
+        let LLVMPassBuilderOptionsSetSLPVectorization = __library
+            .get(b"LLVMPassBuilderOptionsSetSLPVectorization\0")
+            .map(|sym| *sym);
+        let LLVMPassBuilderOptionsSetLoopUnrolling = __library
+            .get(b"LLVMPassBuilderOptionsSetLoopUnrolling\0")
+            .map(|sym| *sym);
+        let LLVMPassBuilderOptionsSetForgetAllSCEVInLoopUnroll = __library
+            .get(b"LLVMPassBuilderOptionsSetForgetAllSCEVInLoopUnroll\0")
+            .map(|sym| *sym);
+        let LLVMPassBuilderOptionsSetLicmMssaOptCap = __library
+            .get(b"LLVMPassBuilderOptionsSetLicmMssaOptCap\0")
+            .map(|sym| *sym);
+        let LLVMPassBuilderOptionsSetLicmMssaNoAccForPromotionCap = __library
+            .get(b"LLVMPassBuilderOptionsSetLicmMssaNoAccForPromotionCap\0")
+            .map(|sym| *sym);
+        let LLVMPassBuilderOptionsSetCallGraphProfile = __library
+            .get(b"LLVMPassBuilderOptionsSetCallGraphProfile\0")
+            .map(|sym| *sym);
+        let LLVMPassBuilderOptionsSetMergeFunctions = __library
+            .get(b"LLVMPassBuilderOptionsSetMergeFunctions\0")
+            .map(|sym| *sym);
+        let LLVMPassBuilderOptionsSetInlinerThreshold = __library
+            .get(b"LLVMPassBuilderOptionsSetInlinerThreshold\0")
+            .map(|sym| *sym);
+        let LLVMDisposePassBuilderOptions = __library
+            .get(b"LLVMDisposePassBuilderOptions\0")
+            .map(|sym| *sym);
         Ok(LLVM {
             __library,
             LLVMVerifyModule,
@@ -10041,117 +9753,12 @@ impl LLVM {
             LLVMDisposeErrorMessage,
             LLVMGetStringErrorTypeId,
             LLVMCreateStringError,
-            LLVMInitializeAArch64TargetInfo,
-            LLVMInitializeAMDGPUTargetInfo,
-            LLVMInitializeARMTargetInfo,
-            LLVMInitializeAVRTargetInfo,
-            LLVMInitializeBPFTargetInfo,
-            LLVMInitializeHexagonTargetInfo,
-            LLVMInitializeLanaiTargetInfo,
-            LLVMInitializeLoongArchTargetInfo,
-            LLVMInitializeMipsTargetInfo,
-            LLVMInitializeMSP430TargetInfo,
-            LLVMInitializeNVPTXTargetInfo,
-            LLVMInitializePowerPCTargetInfo,
-            LLVMInitializeRISCVTargetInfo,
-            LLVMInitializeSparcTargetInfo,
-            LLVMInitializeSystemZTargetInfo,
-            LLVMInitializeVETargetInfo,
-            LLVMInitializeWebAssemblyTargetInfo,
             LLVMInitializeX86TargetInfo,
-            LLVMInitializeXCoreTargetInfo,
-            LLVMInitializeAArch64Target,
-            LLVMInitializeAMDGPUTarget,
-            LLVMInitializeARMTarget,
-            LLVMInitializeAVRTarget,
-            LLVMInitializeBPFTarget,
-            LLVMInitializeHexagonTarget,
-            LLVMInitializeLanaiTarget,
-            LLVMInitializeLoongArchTarget,
-            LLVMInitializeMipsTarget,
-            LLVMInitializeMSP430Target,
-            LLVMInitializeNVPTXTarget,
-            LLVMInitializePowerPCTarget,
-            LLVMInitializeRISCVTarget,
-            LLVMInitializeSparcTarget,
-            LLVMInitializeSystemZTarget,
-            LLVMInitializeVETarget,
-            LLVMInitializeWebAssemblyTarget,
             LLVMInitializeX86Target,
-            LLVMInitializeXCoreTarget,
-            LLVMInitializeAArch64TargetMC,
-            LLVMInitializeAMDGPUTargetMC,
-            LLVMInitializeARMTargetMC,
-            LLVMInitializeAVRTargetMC,
-            LLVMInitializeBPFTargetMC,
-            LLVMInitializeHexagonTargetMC,
-            LLVMInitializeLanaiTargetMC,
-            LLVMInitializeLoongArchTargetMC,
-            LLVMInitializeMipsTargetMC,
-            LLVMInitializeMSP430TargetMC,
-            LLVMInitializeNVPTXTargetMC,
-            LLVMInitializePowerPCTargetMC,
-            LLVMInitializeRISCVTargetMC,
-            LLVMInitializeSparcTargetMC,
-            LLVMInitializeSystemZTargetMC,
-            LLVMInitializeVETargetMC,
-            LLVMInitializeWebAssemblyTargetMC,
             LLVMInitializeX86TargetMC,
-            LLVMInitializeXCoreTargetMC,
-            LLVMInitializeAArch64AsmPrinter,
-            LLVMInitializeAMDGPUAsmPrinter,
-            LLVMInitializeARMAsmPrinter,
-            LLVMInitializeAVRAsmPrinter,
-            LLVMInitializeBPFAsmPrinter,
-            LLVMInitializeHexagonAsmPrinter,
-            LLVMInitializeLanaiAsmPrinter,
-            LLVMInitializeLoongArchAsmPrinter,
-            LLVMInitializeMipsAsmPrinter,
-            LLVMInitializeMSP430AsmPrinter,
-            LLVMInitializeNVPTXAsmPrinter,
-            LLVMInitializePowerPCAsmPrinter,
-            LLVMInitializeRISCVAsmPrinter,
-            LLVMInitializeSparcAsmPrinter,
-            LLVMInitializeSystemZAsmPrinter,
-            LLVMInitializeVEAsmPrinter,
-            LLVMInitializeWebAssemblyAsmPrinter,
             LLVMInitializeX86AsmPrinter,
-            LLVMInitializeXCoreAsmPrinter,
-            LLVMInitializeAArch64AsmParser,
-            LLVMInitializeAMDGPUAsmParser,
-            LLVMInitializeARMAsmParser,
-            LLVMInitializeAVRAsmParser,
-            LLVMInitializeBPFAsmParser,
-            LLVMInitializeHexagonAsmParser,
-            LLVMInitializeLanaiAsmParser,
-            LLVMInitializeLoongArchAsmParser,
-            LLVMInitializeMipsAsmParser,
-            LLVMInitializeMSP430AsmParser,
-            LLVMInitializePowerPCAsmParser,
-            LLVMInitializeRISCVAsmParser,
-            LLVMInitializeSparcAsmParser,
-            LLVMInitializeSystemZAsmParser,
-            LLVMInitializeVEAsmParser,
-            LLVMInitializeWebAssemblyAsmParser,
             LLVMInitializeX86AsmParser,
-            LLVMInitializeAArch64Disassembler,
-            LLVMInitializeAMDGPUDisassembler,
-            LLVMInitializeARMDisassembler,
-            LLVMInitializeAVRDisassembler,
-            LLVMInitializeBPFDisassembler,
-            LLVMInitializeHexagonDisassembler,
-            LLVMInitializeLanaiDisassembler,
-            LLVMInitializeLoongArchDisassembler,
-            LLVMInitializeMipsDisassembler,
-            LLVMInitializeMSP430Disassembler,
-            LLVMInitializePowerPCDisassembler,
-            LLVMInitializeRISCVDisassembler,
-            LLVMInitializeSparcDisassembler,
-            LLVMInitializeSystemZDisassembler,
-            LLVMInitializeVEDisassembler,
-            LLVMInitializeWebAssemblyDisassembler,
             LLVMInitializeX86Disassembler,
-            LLVMInitializeXCoreDisassembler,
             LLVMGetModuleDataLayout,
             LLVMSetModuleDataLayout,
             LLVMCreateTargetData,
@@ -10397,6 +10004,21 @@ impl LLVM {
             LLVMParseCommandLineOptions,
             LLVMSearchForAddressOfSymbol,
             LLVMAddSymbol,
+            LLVMRunPasses,
+            LLVMCreatePassBuilderOptions,
+            LLVMPassBuilderOptionsSetVerifyEach,
+            LLVMPassBuilderOptionsSetDebugLogging,
+            LLVMPassBuilderOptionsSetLoopInterleaving,
+            LLVMPassBuilderOptionsSetLoopVectorization,
+            LLVMPassBuilderOptionsSetSLPVectorization,
+            LLVMPassBuilderOptionsSetLoopUnrolling,
+            LLVMPassBuilderOptionsSetForgetAllSCEVInLoopUnroll,
+            LLVMPassBuilderOptionsSetLicmMssaOptCap,
+            LLVMPassBuilderOptionsSetLicmMssaNoAccForPromotionCap,
+            LLVMPassBuilderOptionsSetCallGraphProfile,
+            LLVMPassBuilderOptionsSetMergeFunctions,
+            LLVMPassBuilderOptionsSetInlinerThreshold,
+            LLVMDisposePassBuilderOptions,
         })
     }
     pub unsafe fn LLVMVerifyModule(
@@ -18589,219 +18211,9 @@ impl LLVM {
             .as_ref()
             .expect("Expected function, got error."))(ErrMsg)
     }
-    pub unsafe fn LLVMInitializeAArch64TargetInfo(&self) {
-        (self
-            .LLVMInitializeAArch64TargetInfo
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeAMDGPUTargetInfo(&self) {
-        (self
-            .LLVMInitializeAMDGPUTargetInfo
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeARMTargetInfo(&self) {
-        (self
-            .LLVMInitializeARMTargetInfo
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeAVRTargetInfo(&self) {
-        (self
-            .LLVMInitializeAVRTargetInfo
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeBPFTargetInfo(&self) {
-        (self
-            .LLVMInitializeBPFTargetInfo
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeHexagonTargetInfo(&self) {
-        (self
-            .LLVMInitializeHexagonTargetInfo
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeLanaiTargetInfo(&self) {
-        (self
-            .LLVMInitializeLanaiTargetInfo
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeLoongArchTargetInfo(&self) {
-        (self
-            .LLVMInitializeLoongArchTargetInfo
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeMipsTargetInfo(&self) {
-        (self
-            .LLVMInitializeMipsTargetInfo
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeMSP430TargetInfo(&self) {
-        (self
-            .LLVMInitializeMSP430TargetInfo
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeNVPTXTargetInfo(&self) {
-        (self
-            .LLVMInitializeNVPTXTargetInfo
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializePowerPCTargetInfo(&self) {
-        (self
-            .LLVMInitializePowerPCTargetInfo
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeRISCVTargetInfo(&self) {
-        (self
-            .LLVMInitializeRISCVTargetInfo
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeSparcTargetInfo(&self) {
-        (self
-            .LLVMInitializeSparcTargetInfo
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeSystemZTargetInfo(&self) {
-        (self
-            .LLVMInitializeSystemZTargetInfo
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeVETargetInfo(&self) {
-        (self
-            .LLVMInitializeVETargetInfo
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeWebAssemblyTargetInfo(&self) {
-        (self
-            .LLVMInitializeWebAssemblyTargetInfo
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
     pub unsafe fn LLVMInitializeX86TargetInfo(&self) {
         (self
             .LLVMInitializeX86TargetInfo
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeXCoreTargetInfo(&self) {
-        (self
-            .LLVMInitializeXCoreTargetInfo
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeAArch64Target(&self) {
-        (self
-            .LLVMInitializeAArch64Target
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeAMDGPUTarget(&self) {
-        (self
-            .LLVMInitializeAMDGPUTarget
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeARMTarget(&self) {
-        (self
-            .LLVMInitializeARMTarget
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeAVRTarget(&self) {
-        (self
-            .LLVMInitializeAVRTarget
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeBPFTarget(&self) {
-        (self
-            .LLVMInitializeBPFTarget
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeHexagonTarget(&self) {
-        (self
-            .LLVMInitializeHexagonTarget
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeLanaiTarget(&self) {
-        (self
-            .LLVMInitializeLanaiTarget
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeLoongArchTarget(&self) {
-        (self
-            .LLVMInitializeLoongArchTarget
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeMipsTarget(&self) {
-        (self
-            .LLVMInitializeMipsTarget
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeMSP430Target(&self) {
-        (self
-            .LLVMInitializeMSP430Target
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeNVPTXTarget(&self) {
-        (self
-            .LLVMInitializeNVPTXTarget
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializePowerPCTarget(&self) {
-        (self
-            .LLVMInitializePowerPCTarget
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeRISCVTarget(&self) {
-        (self
-            .LLVMInitializeRISCVTarget
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeSparcTarget(&self) {
-        (self
-            .LLVMInitializeSparcTarget
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeSystemZTarget(&self) {
-        (self
-            .LLVMInitializeSystemZTarget
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeVETarget(&self) {
-        (self
-            .LLVMInitializeVETarget
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeWebAssemblyTarget(&self) {
-        (self
-            .LLVMInitializeWebAssemblyTarget
             .as_ref()
             .expect("Expected function, got error."))()
     }
@@ -18811,225 +18223,9 @@ impl LLVM {
             .as_ref()
             .expect("Expected function, got error."))()
     }
-    pub unsafe fn LLVMInitializeXCoreTarget(&self) {
-        (self
-            .LLVMInitializeXCoreTarget
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeAArch64TargetMC(&self) {
-        (self
-            .LLVMInitializeAArch64TargetMC
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeAMDGPUTargetMC(&self) {
-        (self
-            .LLVMInitializeAMDGPUTargetMC
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeARMTargetMC(&self) {
-        (self
-            .LLVMInitializeARMTargetMC
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeAVRTargetMC(&self) {
-        (self
-            .LLVMInitializeAVRTargetMC
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeBPFTargetMC(&self) {
-        (self
-            .LLVMInitializeBPFTargetMC
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeHexagonTargetMC(&self) {
-        (self
-            .LLVMInitializeHexagonTargetMC
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeLanaiTargetMC(&self) {
-        (self
-            .LLVMInitializeLanaiTargetMC
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeLoongArchTargetMC(&self) {
-        (self
-            .LLVMInitializeLoongArchTargetMC
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeMipsTargetMC(&self) {
-        (self
-            .LLVMInitializeMipsTargetMC
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeMSP430TargetMC(&self) {
-        (self
-            .LLVMInitializeMSP430TargetMC
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeNVPTXTargetMC(&self) {
-        (self
-            .LLVMInitializeNVPTXTargetMC
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializePowerPCTargetMC(&self) {
-        (self
-            .LLVMInitializePowerPCTargetMC
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeRISCVTargetMC(&self) {
-        (self
-            .LLVMInitializeRISCVTargetMC
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeSparcTargetMC(&self) {
-        (self
-            .LLVMInitializeSparcTargetMC
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeSystemZTargetMC(&self) {
-        (self
-            .LLVMInitializeSystemZTargetMC
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeVETargetMC(&self) {
-        (self
-            .LLVMInitializeVETargetMC
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeWebAssemblyTargetMC(&self) {
-        (self
-            .LLVMInitializeWebAssemblyTargetMC
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
     pub unsafe fn LLVMInitializeX86TargetMC(&self) {
         (self
             .LLVMInitializeX86TargetMC
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeXCoreTargetMC(&self) {
-        (self
-            .LLVMInitializeXCoreTargetMC
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeAArch64AsmPrinter(&self) {
-        (self
-            .LLVMInitializeAArch64AsmPrinter
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeAMDGPUAsmPrinter(&self) {
-        (self
-            .LLVMInitializeAMDGPUAsmPrinter
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeARMAsmPrinter(&self) {
-        (self
-            .LLVMInitializeARMAsmPrinter
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeAVRAsmPrinter(&self) {
-        (self
-            .LLVMInitializeAVRAsmPrinter
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeBPFAsmPrinter(&self) {
-        (self
-            .LLVMInitializeBPFAsmPrinter
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeHexagonAsmPrinter(&self) {
-        (self
-            .LLVMInitializeHexagonAsmPrinter
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeLanaiAsmPrinter(&self) {
-        (self
-            .LLVMInitializeLanaiAsmPrinter
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeLoongArchAsmPrinter(&self) {
-        (self
-            .LLVMInitializeLoongArchAsmPrinter
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeMipsAsmPrinter(&self) {
-        (self
-            .LLVMInitializeMipsAsmPrinter
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeMSP430AsmPrinter(&self) {
-        (self
-            .LLVMInitializeMSP430AsmPrinter
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeNVPTXAsmPrinter(&self) {
-        (self
-            .LLVMInitializeNVPTXAsmPrinter
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializePowerPCAsmPrinter(&self) {
-        (self
-            .LLVMInitializePowerPCAsmPrinter
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeRISCVAsmPrinter(&self) {
-        (self
-            .LLVMInitializeRISCVAsmPrinter
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeSparcAsmPrinter(&self) {
-        (self
-            .LLVMInitializeSparcAsmPrinter
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeSystemZAsmPrinter(&self) {
-        (self
-            .LLVMInitializeSystemZAsmPrinter
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeVEAsmPrinter(&self) {
-        (self
-            .LLVMInitializeVEAsmPrinter
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeWebAssemblyAsmPrinter(&self) {
-        (self
-            .LLVMInitializeWebAssemblyAsmPrinter
             .as_ref()
             .expect("Expected function, got error."))()
     }
@@ -19039,219 +18235,15 @@ impl LLVM {
             .as_ref()
             .expect("Expected function, got error."))()
     }
-    pub unsafe fn LLVMInitializeXCoreAsmPrinter(&self) {
-        (self
-            .LLVMInitializeXCoreAsmPrinter
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeAArch64AsmParser(&self) {
-        (self
-            .LLVMInitializeAArch64AsmParser
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeAMDGPUAsmParser(&self) {
-        (self
-            .LLVMInitializeAMDGPUAsmParser
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeARMAsmParser(&self) {
-        (self
-            .LLVMInitializeARMAsmParser
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeAVRAsmParser(&self) {
-        (self
-            .LLVMInitializeAVRAsmParser
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeBPFAsmParser(&self) {
-        (self
-            .LLVMInitializeBPFAsmParser
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeHexagonAsmParser(&self) {
-        (self
-            .LLVMInitializeHexagonAsmParser
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeLanaiAsmParser(&self) {
-        (self
-            .LLVMInitializeLanaiAsmParser
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeLoongArchAsmParser(&self) {
-        (self
-            .LLVMInitializeLoongArchAsmParser
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeMipsAsmParser(&self) {
-        (self
-            .LLVMInitializeMipsAsmParser
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeMSP430AsmParser(&self) {
-        (self
-            .LLVMInitializeMSP430AsmParser
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializePowerPCAsmParser(&self) {
-        (self
-            .LLVMInitializePowerPCAsmParser
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeRISCVAsmParser(&self) {
-        (self
-            .LLVMInitializeRISCVAsmParser
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeSparcAsmParser(&self) {
-        (self
-            .LLVMInitializeSparcAsmParser
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeSystemZAsmParser(&self) {
-        (self
-            .LLVMInitializeSystemZAsmParser
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeVEAsmParser(&self) {
-        (self
-            .LLVMInitializeVEAsmParser
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeWebAssemblyAsmParser(&self) {
-        (self
-            .LLVMInitializeWebAssemblyAsmParser
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
     pub unsafe fn LLVMInitializeX86AsmParser(&self) {
         (self
             .LLVMInitializeX86AsmParser
             .as_ref()
             .expect("Expected function, got error."))()
     }
-    pub unsafe fn LLVMInitializeAArch64Disassembler(&self) {
-        (self
-            .LLVMInitializeAArch64Disassembler
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeAMDGPUDisassembler(&self) {
-        (self
-            .LLVMInitializeAMDGPUDisassembler
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeARMDisassembler(&self) {
-        (self
-            .LLVMInitializeARMDisassembler
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeAVRDisassembler(&self) {
-        (self
-            .LLVMInitializeAVRDisassembler
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeBPFDisassembler(&self) {
-        (self
-            .LLVMInitializeBPFDisassembler
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeHexagonDisassembler(&self) {
-        (self
-            .LLVMInitializeHexagonDisassembler
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeLanaiDisassembler(&self) {
-        (self
-            .LLVMInitializeLanaiDisassembler
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeLoongArchDisassembler(&self) {
-        (self
-            .LLVMInitializeLoongArchDisassembler
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeMipsDisassembler(&self) {
-        (self
-            .LLVMInitializeMipsDisassembler
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeMSP430Disassembler(&self) {
-        (self
-            .LLVMInitializeMSP430Disassembler
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializePowerPCDisassembler(&self) {
-        (self
-            .LLVMInitializePowerPCDisassembler
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeRISCVDisassembler(&self) {
-        (self
-            .LLVMInitializeRISCVDisassembler
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeSparcDisassembler(&self) {
-        (self
-            .LLVMInitializeSparcDisassembler
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeSystemZDisassembler(&self) {
-        (self
-            .LLVMInitializeSystemZDisassembler
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeVEDisassembler(&self) {
-        (self
-            .LLVMInitializeVEDisassembler
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeWebAssemblyDisassembler(&self) {
-        (self
-            .LLVMInitializeWebAssemblyDisassembler
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
     pub unsafe fn LLVMInitializeX86Disassembler(&self) {
         (self
             .LLVMInitializeX86Disassembler
-            .as_ref()
-            .expect("Expected function, got error."))()
-    }
-    pub unsafe fn LLVMInitializeXCoreDisassembler(&self) {
-        (self
-            .LLVMInitializeXCoreDisassembler
             .as_ref()
             .expect("Expected function, got error."))()
     }
@@ -21646,5 +20638,154 @@ impl LLVM {
             .LLVMAddSymbol
             .as_ref()
             .expect("Expected function, got error."))(symbolName, symbolValue)
+    }
+    #[doc = " Construct and run a set of passes over a module\n\n This function takes a string with the passes that should be used. The format\n of this string is the same as opt's -passes argument for the new pass\n manager. Individual passes may be specified, separated by commas. Full\n pipelines may also be invoked using `default<O3>` and friends. See opt for\n full reference of the Passes format."]
+    pub unsafe fn LLVMRunPasses(
+        &self,
+        M: LLVMModuleRef,
+        Passes: *const ::std::os::raw::c_char,
+        TM: LLVMTargetMachineRef,
+        Options: LLVMPassBuilderOptionsRef,
+    ) -> LLVMErrorRef {
+        (self
+            .LLVMRunPasses
+            .as_ref()
+            .expect("Expected function, got error."))(M, Passes, TM, Options)
+    }
+    #[doc = " Create a new set of options for a PassBuilder\n\n Ownership of the returned instance is given to the client, and they are\n responsible for it. The client should call LLVMDisposePassBuilderOptions\n to free the pass builder options."]
+    pub unsafe fn LLVMCreatePassBuilderOptions(&self) -> LLVMPassBuilderOptionsRef {
+        (self
+            .LLVMCreatePassBuilderOptions
+            .as_ref()
+            .expect("Expected function, got error."))()
+    }
+    #[doc = " Toggle adding the VerifierPass for the PassBuilder, ensuring all functions\n inside the module is valid."]
+    pub unsafe fn LLVMPassBuilderOptionsSetVerifyEach(
+        &self,
+        Options: LLVMPassBuilderOptionsRef,
+        VerifyEach: LLVMBool,
+    ) {
+        (self
+            .LLVMPassBuilderOptionsSetVerifyEach
+            .as_ref()
+            .expect("Expected function, got error."))(Options, VerifyEach)
+    }
+    #[doc = " Toggle debug logging when running the PassBuilder"]
+    pub unsafe fn LLVMPassBuilderOptionsSetDebugLogging(
+        &self,
+        Options: LLVMPassBuilderOptionsRef,
+        DebugLogging: LLVMBool,
+    ) {
+        (self
+            .LLVMPassBuilderOptionsSetDebugLogging
+            .as_ref()
+            .expect("Expected function, got error."))(Options, DebugLogging)
+    }
+    pub unsafe fn LLVMPassBuilderOptionsSetLoopInterleaving(
+        &self,
+        Options: LLVMPassBuilderOptionsRef,
+        LoopInterleaving: LLVMBool,
+    ) {
+        (self
+            .LLVMPassBuilderOptionsSetLoopInterleaving
+            .as_ref()
+            .expect("Expected function, got error."))(Options, LoopInterleaving)
+    }
+    pub unsafe fn LLVMPassBuilderOptionsSetLoopVectorization(
+        &self,
+        Options: LLVMPassBuilderOptionsRef,
+        LoopVectorization: LLVMBool,
+    ) {
+        (self
+            .LLVMPassBuilderOptionsSetLoopVectorization
+            .as_ref()
+            .expect("Expected function, got error."))(Options, LoopVectorization)
+    }
+    pub unsafe fn LLVMPassBuilderOptionsSetSLPVectorization(
+        &self,
+        Options: LLVMPassBuilderOptionsRef,
+        SLPVectorization: LLVMBool,
+    ) {
+        (self
+            .LLVMPassBuilderOptionsSetSLPVectorization
+            .as_ref()
+            .expect("Expected function, got error."))(Options, SLPVectorization)
+    }
+    pub unsafe fn LLVMPassBuilderOptionsSetLoopUnrolling(
+        &self,
+        Options: LLVMPassBuilderOptionsRef,
+        LoopUnrolling: LLVMBool,
+    ) {
+        (self
+            .LLVMPassBuilderOptionsSetLoopUnrolling
+            .as_ref()
+            .expect("Expected function, got error."))(Options, LoopUnrolling)
+    }
+    pub unsafe fn LLVMPassBuilderOptionsSetForgetAllSCEVInLoopUnroll(
+        &self,
+        Options: LLVMPassBuilderOptionsRef,
+        ForgetAllSCEVInLoopUnroll: LLVMBool,
+    ) {
+        (self
+            .LLVMPassBuilderOptionsSetForgetAllSCEVInLoopUnroll
+            .as_ref()
+            .expect("Expected function, got error."))(Options, ForgetAllSCEVInLoopUnroll)
+    }
+    pub unsafe fn LLVMPassBuilderOptionsSetLicmMssaOptCap(
+        &self,
+        Options: LLVMPassBuilderOptionsRef,
+        LicmMssaOptCap: ::std::os::raw::c_uint,
+    ) {
+        (self
+            .LLVMPassBuilderOptionsSetLicmMssaOptCap
+            .as_ref()
+            .expect("Expected function, got error."))(Options, LicmMssaOptCap)
+    }
+    pub unsafe fn LLVMPassBuilderOptionsSetLicmMssaNoAccForPromotionCap(
+        &self,
+        Options: LLVMPassBuilderOptionsRef,
+        LicmMssaNoAccForPromotionCap: ::std::os::raw::c_uint,
+    ) {
+        (self
+            .LLVMPassBuilderOptionsSetLicmMssaNoAccForPromotionCap
+            .as_ref()
+            .expect("Expected function, got error."))(Options, LicmMssaNoAccForPromotionCap)
+    }
+    pub unsafe fn LLVMPassBuilderOptionsSetCallGraphProfile(
+        &self,
+        Options: LLVMPassBuilderOptionsRef,
+        CallGraphProfile: LLVMBool,
+    ) {
+        (self
+            .LLVMPassBuilderOptionsSetCallGraphProfile
+            .as_ref()
+            .expect("Expected function, got error."))(Options, CallGraphProfile)
+    }
+    pub unsafe fn LLVMPassBuilderOptionsSetMergeFunctions(
+        &self,
+        Options: LLVMPassBuilderOptionsRef,
+        MergeFunctions: LLVMBool,
+    ) {
+        (self
+            .LLVMPassBuilderOptionsSetMergeFunctions
+            .as_ref()
+            .expect("Expected function, got error."))(Options, MergeFunctions)
+    }
+    pub unsafe fn LLVMPassBuilderOptionsSetInlinerThreshold(
+        &self,
+        Options: LLVMPassBuilderOptionsRef,
+        Threshold: ::std::os::raw::c_int,
+    ) {
+        (self
+            .LLVMPassBuilderOptionsSetInlinerThreshold
+            .as_ref()
+            .expect("Expected function, got error."))(Options, Threshold)
+    }
+    #[doc = " Dispose of a heap-allocated PassBuilderOptions instance"]
+    pub unsafe fn LLVMDisposePassBuilderOptions(&self, Options: LLVMPassBuilderOptionsRef) {
+        (self
+            .LLVMDisposePassBuilderOptions
+            .as_ref()
+            .expect("Expected function, got error."))(Options)
     }
 }
